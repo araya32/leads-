@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARPEPTIDES</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#020b18;
+  color:white;
+  overflow-x:hidden;
+}
+
+:root{
+  --green:#8cff00;
+  --blue:#0077ff;
+  --dark:#020b18;
+}
+
+/* TOP BAR */
+
+.topbar{
+  background:linear-gradient(90deg,#003c8f,#04142f);
+  text-align:center;
+  padding:10px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.topbar span{
+  color:var(--green);
+}
+
+/* HEADER */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 7%;
+  border-bottom:1px solid rgba(0,119,255,.3);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#020b18;
+  backdrop-filter:blur(10px);
+}
+
+.logo{
+  font-size:34px;
+  font-weight:900;
+}
+
+.logo span{
+  color:var(--green);
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:28px;
+  font-size:14px;
+  font-weight:bold;
+  transition:.3s;
+}
+
+nav a:hover{
+  color:var(--green);
+}
+
+/* HERO */
+
+.hero{
+  min-height:650px;
+  padding:80px 7%;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:40px;
+
+  background:
+  radial-gradient(circle at right, rgba(0,119,255,.35), transparent 25%),
+  linear-gradient(135deg,#020b18,#061c3d,#020b18);
+}
+
+.hero h1{
+  font-size:64px;
+  line-height:1;
+  text-transform:uppercase;
+}
+
+.hero h1 span{
+  color:var(--green);
+}
+
+.hero h2{
+  font-size:34px;
+  margin-top:14px;
+}
+
+.icons{
+  display:flex;
+  gap:35px;
+  flex-wrap:wrap;
+  margin:40px 0;
+}
+
+.icon-box{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:bold;
+}
+
+.icon{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:2px solid var(--blue);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--green);
+  font-size:24px;
+
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 rgba(0,119,255,.4);}
+  50%{box-shadow:0 0 20px rgba(0,119,255,.8);}
+  100%{box-shadow:0 0 0 rgba(0,119,255,.4);}
+}
+
+.icon-box small{
+  color:#00c3ff;
+}
+
+/* BUTTONS */
+
+.btn{
+  display:inline-block;
+  padding:15px 28px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:900;
+  margin-right:12px;
+  transition:.3s;
+}
+
+.green-btn{
+  background:linear-gradient(135deg,#9cff00,#5ac300);
+  color:#04142f;
+}
+
+.green-btn:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 25px rgba(140,255,0,.7);
+}
+
+.blue-btn{
+  border:1px solid var(--blue);
+  color:#00bfff;
+}
+
+.blue-btn:hover{
+  background:#0077ff;
+  color:white;
+}
+
+/* HERO VIAL */
+
+.vial-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+.vial{
+  width:270px;
+  height:450px;
+  background:linear-gradient(90deg,#f1f1f1,#ffffff,#dddddd);
+  border-radius:40px 40px 75px 75px;
+  border:6px solid #dfe6f3;
+  box-shadow:0 0 60px rgba(0,119,255,.5);
+  text-align:center;
+  padding:40px 20px;
+  color:#001f5c;
+  position:relative;
+
+  animation:floatMain 4s ease-in-out infinite;
+}
+
+@keyframes floatMain{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-18px);}
+  100%{transform:translateY(0px);}
+}
+
+.vial:before{
+  content:"";
+  position:absolute;
+  top:-28px;
+  left:48px;
+  width:170px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#0077ff,#8cff00);
+}
+
+.vial-brand{
+  margin-top:45px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.vial-brand span{
+  color:#55c400;
+}
+
+.vial-product{
+  font-size:70px;
+  font-weight:900;
+  margin-top:35px;
+}
+
+.vial-mg{
+  display:inline-block;
+  border:2px solid #001f5c;
+  padding:5px 20px;
+  font-weight:900;
+  margin-top:10px;
+}
+
+.vial small{
+  display:block;
+  margin-top:25px;
+  font-weight:bold;
+}
+
+/* STRIP */
+
+.strip{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  background:#061c3d;
+  border-top:1px solid var(--blue);
+  border-bottom:1px solid var(--blue);
+}
+
+.strip div{
+  padding:22px;
+  text-align:center;
+}
+
+.strip strong{
+  color:var(--green);
+}
+
+/* PRODUCTS */
+
+section{
+  padding:70px 7%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:36px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#d4e3ff;
+  margin-bottom:45px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:linear-gradient(180deg,#071f45,#020b18);
+  border:1px solid rgba(0,119,255,.5);
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px rgba(0,119,255,.4);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:
+  linear-gradient(
+  120deg,
+  transparent,
+  rgba(0,119,255,.08),
+  transparent
+  );
+  top:-100%;
+  left:-100%;
+  transform:rotate(25deg);
+  transition:.8s;
+}
+
+.card:hover::before{
+  top:100%;
+  left:100%;
+}
+
+.product-img{
+  height:240px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
+  position:relative;
+}
+
+.product-img::after{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:25px;
+  background:rgba(0,119,255,.35);
+  filter:blur(18px);
+  border-radius:50%;
+  bottom:15px;
+}
+
+.product-img img{
+  width:150px;
+  transition:.4s;
+  filter:drop-shadow(0 0 15px rgba(0,119,255,.45));
+
+  animation:floatBottle 4s ease-in-out infinite;
+}
+
+.card:nth-child(1) img{animation-duration:4s;}
+.card:nth-child(2) img{animation-duration:5s;}
+.card:nth-child(3) img{animation-duration:4.5s;}
+.card:nth-child(4) img{animation-duration:5.5s;}
+.card:nth-child(5) img{animation-duration:4.2s;}
+.card:nth-child(6) img{animation-duration:5.2s;}
+
+@keyframes floatBottle{
+  0%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  25%{
+    transform:translateY(-10px) rotate(-1deg);
+  }
+
+  50%{
+    transform:translateY(-18px) rotate(1deg);
+  }
+
+  75%{
+    transform:translateY(-10px) rotate(-1deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+}
+
+.product-img img:hover{
+  transform:scale(1.12);
+
+  filter:
+  drop-shadow(0 0 12px #0077ff)
+  drop-shadow(0 0 25px #00bfff)
+  drop-shadow(0 0 40px #8cff00);
+}
+
+.card h3{
+  margin-bottom:14px;
+  font-size:17px;
+}
+
+.price{
+  color:var(--green);
+  font-size:28px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.card a{
+  display:block;
+  background:#004fb4;
+  color:white;
+  text-decoration:none;
+  padding:12px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:900;
+  transition:.3s;
+}
+
+.card a:hover{
+  background:#0077ff;
+}
+
+/* INFO */
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
+.info-card{
+  background:linear-gradient(180deg,#071f45,#020b18);
+  border:1px solid rgba(0,119,255,.4);
+  border-radius:16px;
+  padding:30px;
+}
+
+.info-card h3{
+  font-size:26px;
+  margin-bottom:16px;
+}
+
+.info-card h3 span{
+  color:var(--green);
+}
+
+.info-card p{
+  color:#dbe6ff;
+  line-height:1.7;
+}
+
+.info-card ul{
+  list-style:none;
+}
+
+.info-card li{
+  margin-bottom:15px;
+  color:#dbe6ff;
+}
+
+.center{
+  text-align:center;
+}
+
+.warning{
+  color:var(--green);
+  font-size:22px;
+  font-weight:900;
+  margin:18px 0;
+}
+
+/* FOOTER */
+
+footer{
+  background:#010714;
+  padding:45px 7% 20px;
+  border-top:1px solid rgba(0,119,255,.4);
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:14px;
+}
+
+footer a{
+  display:block;
+  color:#dbe6ff;
+  text-decoration:none;
+  margin-bottom:10px;
+}
+
+footer p{
+  color:#dbe6ff;
+  line-height:1.8;
+}
+
+.copy{
+  margin-top:35px;
+  border-top:1px solid rgba(0,119,255,.3);
+  padding-top:18px;
+  text-align:center;
+  color:#9fb9dd;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .hero h1{
+    font-size:44px;
+  }
+
+  .hero h2{
+    font-size:26px;
+  }
+
+  .icons{
+    justify-content:center;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+🛡️ RESEARCH USE ONLY | <span>NOT FOR HUMAN CONSUMPTION</span>
+</div>
+
+<header>
+
+<div class="logo">
+MAR<span>PEPTIDES</span>
+</div>
+
+<nav>
+<a href="#">HOME</a>
+<a href="#">SHOP</a>
+<a href="#">COA LIBRARY</a>
+<a href="#">ABOUT</a>
+<a href="#">FAQ</a>
+<a href="#">CONTACT</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div>
+
+<h1>
+PREMIUM
+<span>RESEARCH PEPTIDES</span>
+</h1>
+
+<h2>FOR ADVANCED RESEARCH</h2>
+
+<div class="icons">
+
+<div class="icon-box">
+<div class="icon">⚗️</div>
+<div>
+PURE<br>
+<small>HIGH PURITY</small>
+</div>
+</div>
+
+<div class="icon-box">
+<div class="icon">🎯</div>
+<div>
+POTENT<br>
+<small>HIGH POTENCY</small>
+</div>
+</div>
+
+<div class="icon-box">
+<div class="icon">📈</div>
+<div>
+PERFORMANCE<br>
+<small>MAX RESULTS</small>
+</div>
+</div>
+
+</div>
+
+<a href="#" class="btn green-btn">SHOP NOW</a>
+<a href="#" class="btn blue-btn">VIEW COA LIBRARY</a>
+
+</div>
+
+<div class="vial-wrap">
+
+<div class="vial">
+
+<div class="vial-brand">
+MAR<span>PEPTIDES</span>
+</div>
+
+<div class="vial-product">
+GLP3
+</div>
+
+<div class="vial-mg">
+10MG
+</div>
+
+<small>RESEARCH USE ONLY</small>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="strip">
+
+<div>
+✅ <strong>LAB TESTED</strong><br>
+Every batch tested
+</div>
+
+<div>
+🚚 <strong>FAST SHIPPING</strong><br>
+Discreet & reliable
+</div>
+
+<div>
+🔒 <strong>SECURE PAYMENTS</strong><br>
+Safe & encrypted
+</div>
+
+<div>
+⭐ <strong>QUALITY GUARANTEED</strong><br>
+Trusted source
+</div>
+
+</div>
+
+<section>
+
+<h2 class="section-title">
+FEATURED PRODUCTS
+</h2>
+
+<p class="subtitle">
+Premium quality research peptides for laboratory use.
+</p>
+
+<div class="products">
+
+<div class="card">
+<div class="product-img">
+<img src="images/glp3.png">
+</div>
+<h3>GLP3 10MG</h3>
+<div class="price">$59.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+<div class="card">
+<div class="product-img">
+<img src="images/semax.png">
+</div>
+<h3>SEMAX 10MG</h3>
+<div class="price">$49.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+<div class="card">
+<div class="product-img">
+<img src="images/epitalon.png">
+</div>
+<h3>EPITALON 10MG</h3>
+<div class="price">$45.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+<div class="card">
+<div class="product-img">
+<img src="images/tb500.png">
+</div>
+<h3>TB500 10MG</h3>
+<div class="price">$55.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+<div class="card">
+<div class="product-img">
+<img src="images/bpc157.png">
+</div>
+<h3>BPC157 10MG</h3>
+<div class="price">$55.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+<div class="card">
+<div class="product-img">
+<img src="images/water.png">
+</div>
+<h3>BACTERIOSTATIC WATER 10ML</h3>
+<div class="price">$19.00</div>
+<a href="#">SELECT OPTIONS</a>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h3>
+WHY CHOOSE <span>MARPEPTIDES?</span>
+</h3>
+
+<ul>
+
+<li>🛡️ High Purity</li>
+<li>⭐ Consistent Quality</li>
+<li>⚗️ Research Focused</li>
+<li>✅ Trusted Source</li>
+
+</ul>
+
+</div>
+
+<div class="info-card center">
+
+<h3>
+<span>RESEARCH USE ONLY</span>
+</h3>
+
+<p>
+All products sold by Marpeptides are intended for laboratory research use only.
+</p>
+
+<div style="font-size:75px;margin:25px 0;">
+🛡️
+</div>
+
+<div class="warning">
+NOT FOR HUMAN CONSUMPTION
+</div>
+
+<p>
+These products are not intended to diagnose, treat, cure or prevent any disease.
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>COA LIBRARY</h3>
+
+<p>
+View and download Certificates of Analysis for all batches.
+</p>
+
+<br>
+
+<a href="#" class="btn blue-btn">
+VIEW COA LIBRARY
+</a>
+
+<div style="font-size:80px;margin-top:30px;">
+📄
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<div class="logo">
+MAR<span>PEPTIDES</span>
+</div>
+
+<p>
+Premium research peptides for advanced laboratory research.
+</p>
+
+</div>
+
+<div>
+
+<h3>QUICK LINKS</h3>
+
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">COA Library</a>
+<a href="#">About</a>
+<a href="#">FAQ</a>
+
+</div>
+
+<div>
+
+<h3>CUSTOMER SERVICE</h3>
+
+<a href="#">Shipping Information</a>
+<a href="#">Returns & Refunds</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+
+</div>
+
+<div>
+
+<h3>CONTACT</h3>
+
+<p>📧 support@marpeptides.com</p>
+<p>📞 +1 (555) 123-4567</p>
+<p>🕘 Monday - Friday 9AM - 6PM</p>
+
+</div>
+
+</div>
+
+<div class="copy">
+© 2026 MARPEPTIDES | RESEARCH USE ONLY
+</div>
+
+</footer>
+
+</body>
+</html>
