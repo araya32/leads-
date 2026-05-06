@@ -712,3 +712,251 @@ Premium research peptides for advanced laboratory research.
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARPEPTIDES Store</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#020b18;color:#fff}
+:root{--green:#8cff00;--blue:#0077ff;--card:#071f45}
+
+.topbar{text-align:center;background:#00306f;padding:10px;font-weight:bold}
+.topbar span{color:var(--green)}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 7%;border-bottom:1px solid #0077ff}
+.logo{font-size:32px;font-weight:900}
+.logo span{color:var(--green)}
+nav a{color:white;text-decoration:none;margin-left:22px;font-weight:bold}
+
+.hero{padding:80px 7%;display:grid;grid-template-columns:1fr 1fr;align-items:center;background:linear-gradient(135deg,#020b18,#061c3d)}
+.hero h1{font-size:58px;text-transform:uppercase}
+.hero h1 span{color:var(--green)}
+.hero p{margin:20px 0;color:#dbe6ff;font-size:20px}
+.btn{padding:14px 25px;border-radius:8px;border:none;font-weight:900;cursor:pointer}
+.green{background:linear-gradient(135deg,#9cff00,#4fb900);color:#031326}
+.blue{background:#004fb4;color:white}
+
+.hero img{width:320px;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 0 25px #0077ff)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+
+section{padding:70px 7%}
+.title{text-align:center;font-size:36px;margin-bottom:10px}
+.subtitle{text-align:center;color:#dbe6ff;margin-bottom:45px}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:25px}
+.card{background:linear-gradient(180deg,#071f45,#020b18);border:1px solid #0077ff;border-radius:16px;padding:20px;text-align:center}
+.card img{width:150px;height:220px;object-fit:contain;transition:.4s;filter:drop-shadow(0 0 15px #0077ff)}
+.card:hover img{transform:scale(1.1) rotate(-3deg)}
+.card h3{margin:14px 0}
+.price{color:var(--green);font-size:26px;font-weight:900;margin-bottom:14px}
+
+.cart{position:fixed;right:20px;top:90px;background:#071f45;border:1px solid #0077ff;border-radius:15px;padding:20px;width:330px;z-index:99;box-shadow:0 0 25px rgba(0,119,255,.5)}
+.cart h2{color:var(--green);margin-bottom:15px}
+.cart-item{display:flex;justify-content:space-between;border-bottom:1px solid #174b8f;padding:8px 0;font-size:14px}
+.total{font-size:22px;color:var(--green);font-weight:900;margin:15px 0}
+
+.checkout{background:#061c3d;border:1px solid #0077ff;border-radius:16px;padding:30px;max-width:700px;margin:auto}
+.checkout input,.checkout select,textarea{width:100%;padding:14px;margin:8px 0;border-radius:7px;border:none}
+.payment-box{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}
+.payment{border:1px solid #0077ff;padding:20px;border-radius:12px;text-align:center;cursor:pointer}
+.payment:hover{background:#00306f}
+.bitcoin{color:#f7931a;font-weight:900}
+.paypal{color:#00b7ff;font-weight:900}
+
+.disclaimer{text-align:center;background:#061c3d;padding:25px;color:#dbe6ff}
+.disclaimer strong{color:var(--green)}
+
+footer{text-align:center;padding:35px;background:#010714;color:#9fb9dd}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;text-align:center}
+.cart{position:static;width:auto;margin:20px}
+nav{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+🛡️ RESEARCH USE ONLY | <span>NOT FOR HUMAN CONSUMPTION</span>
+</div>
+
+<header>
+<div class="logo">MAR<span>PEPTIDES</span></div>
+<nav>
+<a href="#">HOME</a>
+<a href="#shop">SHOP</a>
+<a href="#checkout">CHECKOUT</a>
+<a href="#">COA LIBRARY</a>
+<a href="#">CONTACT</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>Premium <span>Research Peptides</span></h1>
+<p>High quality products for advanced laboratory research.</p>
+<a href="#shop"><button class="btn green">SHOP NOW</button></a>
+</div>
+
+<div>
+<img src="images/frasco.png" alt="MARPEPTIDES GLP3">
+</div>
+</section>
+
+<div class="cart">
+<h2>🛒 Shopping Cart</h2>
+<div id="cartItems"></div>
+<div class="total">Total: $<span id="total">0.00</span></div>
+<a href="#checkout"><button class="btn green" style="width:100%">CHECKOUT</button></a>
+</div>
+
+<section id="shop">
+<h2 class="title">Featured Products</h2>
+<p class="subtitle">Premium quality research peptides for laboratory use.</p>
+
+<div class="products">
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>GLP3 10MG</h3>
+<div class="price">$59.00</div>
+<button class="btn blue" onclick="addToCart('GLP3 10MG',59)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>SEMAX 10MG</h3>
+<div class="price">$49.00</div>
+<button class="btn blue" onclick="addToCart('SEMAX 10MG',49)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>EPITALON 10MG</h3>
+<div class="price">$45.00</div>
+<button class="btn blue" onclick="addToCart('EPITALON 10MG',45)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>TB500 10MG</h3>
+<div class="price">$55.00</div>
+<button class="btn blue" onclick="addToCart('TB500 10MG',55)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>BPC157 10MG</h3>
+<div class="price">$55.00</div>
+<button class="btn blue" onclick="addToCart('BPC157 10MG',55)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/frasco.png">
+<h3>BACTERIOSTATIC WATER 10ML</h3>
+<div class="price">$19.00</div>
+<button class="btn blue" onclick="addToCart('Bacteriostatic Water 10ML',19)">ADD TO CART</button>
+</div>
+
+</div>
+</section>
+
+<section id="checkout">
+<h2 class="title">Checkout</h2>
+
+<div class="checkout">
+<input type="text" placeholder="Full Name">
+<input type="email" placeholder="Email Address">
+<input type="text" placeholder="Phone Number">
+<input type="text" placeholder="Shipping Address">
+<input type="text" placeholder="City">
+<input type="text" placeholder="State">
+<input type="text" placeholder="Zip Code">
+
+<select>
+<option>Shipping Method</option>
+<option>Standard Shipping - $7.99</option>
+<option>Priority Shipping - $14.99</option>
+<option>Express Shipping - $24.99</option>
+</select>
+
+<h3>Payment Method</h3>
+
+<div class="payment-box">
+<div class="payment paypal">PayPal</div>
+<div class="payment bitcoin">Bitcoin</div>
+</div>
+
+<textarea placeholder="Order Notes"></textarea>
+
+<button class="btn green" style="width:100%;margin-top:15px" onclick="placeOrder()">
+PLACE ORDER
+</button>
+
+<p style="margin-top:15px;color:#dbe6ff">
+For real PayPal payments, connect PayPal Checkout.  
+For Bitcoin, connect a BTC wallet, BTCPay Server, Coinbase Commerce, or another crypto processor.
+</p>
+</div>
+</section>
+
+<div class="disclaimer">
+<strong>RESEARCH USE ONLY.</strong> Not for human consumption. Products are not intended to diagnose, treat, cure, or prevent any disease.
+</div>
+
+<footer>
+© 2026 MARPEPTIDES. All Rights Reserved.
+</footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price){
+  cart.push({name, price});
+  total += price;
+  renderCart();
+}
+
+function renderCart(){
+  const cartItems = document.getElementById("cartItems");
+  cartItems.innerHTML = "";
+
+  cart.forEach((item, index)=>{
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <span>$${item.price}.00 
+        <button onclick="removeItem(${index})" style="margin-left:8px">x</button></span>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = total.toFixed(2);
+}
+
+function removeItem(index){
+  total -= cart[index].price;
+  cart.splice(index,1);
+  renderCart();
+}
+
+function placeOrder(){
+  if(cart.length === 0){
+    alert("Your cart is empty.");
+    return;
+  }
+
+  alert("Order received. Connect PayPal or Bitcoin processor to accept real payments.");
+}
+</script>
+
+</body>
+</html>
+images/frasco.png
