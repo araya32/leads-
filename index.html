@@ -476,4 +476,159 @@
   </script>
 </body>
 </html>
+<script src="https://www.paypal.com/sdk/js?client-id=Ae-hu3Wjb7B2WWc44ObvD_J04f2f-MjmS4aBczna0znrRoSJNzYr5og1LZ7rCvH2nzuFWoyXALvAegBu&currency=USD"></script>
 
+<section class="shop">
+  <div class="product">
+    <h3>GLP3 10MG</h3>
+    <p>$89.00</p>
+    <button onclick="addToCart('GLP3 10MG', 89)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h3>WOLVERINE BPC/TB-500 BLEND</h3>
+    <p>$90.00</p>
+    <button onclick="addToCart('WOLVERINE BPC/TB-500 BLEND', 90)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h3>SEMAX 10MG</h3>
+    <p>$79.00</p>
+    <button onclick="addToCart('SEMAX 10MG', 79)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h3>BAC WATER 10ML</h3>
+    <p>$29.00</p>
+    <button onclick="addToCart('BAC WATER 10ML', 29)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h3>EPITHALON 10MG</h3>
+    <p>$85.00</p>
+    <button onclick="addToCart('EPITHALON 10MG', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <h3>TB500 10MG</h3>
+    <p>$95.00</p>
+    <button onclick="addToCart('TB500 10MG', 95)">Add to Cart</button>
+  </div>
+</section>
+
+<section class="cart-box">
+  <h2>Shopping Cart</h2>
+  <div id="cart-items"></div>
+  <h3>Total: $<span id="cart-total">0.00</span></h3>
+  <div id="paypal-button-container"></div>
+</section>
+
+<style>
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product, .cart-box {
+  background: #111;
+  color: white;
+  padding: 20px;
+  border: 1px solid #333;
+  border-radius: 18px;
+  text-align: center;
+}
+
+button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+</style>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+
+  renderCart();
+}
+
+function removeFromCart(name) {
+  cart = cart.filter(item => item.name !== name);
+  renderCart();
+}
+
+function getTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
+}
+
+function renderCart() {
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartItems.innerHTML = "";
+
+  cart.forEach(item => {
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name} x ${item.qty}</span>
+        <span>$${(item.price * item.qty).toFixed(2)}</span>
+        <button onclick="removeFromCart('${item.name}')">X</button>
+      </div>
+    `;
+  });
+
+  cartTotal.textContent = getTotal();
+}
+
+paypal.Buttons({
+  createOrder: function(data, actions) {
+    if (cart.length === 0) {
+      alert("Please add products to cart first.");
+      return;
+    }
+
+    return actions.order.create({
+      purchase_units: [{
+        description: "MARPEPTIDES Order",
+        amount: {
+          value: getTotal()
+        }
+      }]
+    });
+  },
+
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function(details) {
+      alert("Payment completed. Thank you, " + details.payer.name.given_name);
+      cart = [];
+      renderCart();
+    });
+  },
+
+  onError: function(err) {
+    console.error(err);
+    alert("Payment error.");
+  }
+}).render("#paypal-button-container");
+</script>
