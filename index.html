@@ -237,12 +237,25 @@
 
     .checkout{display:grid;grid-template-columns:1fr .75fr;gap:22px}.card{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:24px;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);box-shadow:var(--glow)}.card h3{font-family:Orbitron,sans-serif;text-transform:uppercase;margin-bottom:16px}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field.full{grid-column:1/-1}label{display:block;color:#bbb;font-weight:800;font-size:12px;margin-bottom:7px;text-transform:uppercase;letter-spacing:.09em}input,select,textarea{width:100%;border:1px solid var(--softline);background:#000;color:#fff;padding:14px;outline:0}input:focus,select:focus,textarea:focus{border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.08)}.paybox{border:1px solid var(--softline);background:#000;padding:16px;margin-top:12px;display:flex;justify-content:space-between;gap:10px}.paybox strong{font-family:Orbitron,sans-serif}.summary-line{display:flex;justify-content:space-between;border-bottom:1px solid var(--softline);padding:13px 0;color:#bbb}.summary-line.total{font-size:24px;color:#fff;font-weight:900;border-bottom:0}.notice{border:1px solid #fff;background:rgba(255,255,255,.055);padding:18px;color:#bbb;line-height:1.65;margin-top:18px}
 
+
+    .policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .policy-text h3{font-family:Orbitron,sans-serif;text-transform:uppercase;margin:18px 0 10px;color:#fff}
+    .policy-text p,.policy-text li{color:#bbb;line-height:1.7;font-size:14px}
+    .policy-text ul{padding-left:22px;margin:10px 0 16px}
+    .contact-launch{position:fixed;left:20px;bottom:20px;z-index:45;border:1px solid #fff;background:#fff;color:#000;padding:13px 16px;font-weight:900;cursor:pointer;box-shadow:var(--glow);clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+    .contact-modal{position:fixed;inset:0;z-index:130;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.82)}
+    .contact-modal.open{display:flex}
+    .contact-box{width:min(720px,100%);max-height:88vh;overflow:auto;border:1px solid #fff;background:#050505;padding:26px;box-shadow:var(--glow);clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px)}
+    .contact-box h2{font-family:Orbitron,sans-serif;text-transform:uppercase;margin-bottom:14px}
+    .contact-close{float:right;background:#fff;color:#000;border:0;padding:10px 14px;font-weight:900;cursor:pointer}
+    .contact-note{color:#bbb;line-height:1.6;margin:12px 0 18px}
+
     footer{border-top:1px solid var(--line);padding:46px 0;color:#aaa}.footer-grid{display:grid;grid-template-columns:1fr repeat(3,.5fr);gap:26px}.footer-grid h4{font-family:Orbitron,sans-serif;color:#fff;margin-bottom:12px}.footer-grid a,.footer-grid p{display:block;color:#aaa;line-height:1.8;font-size:14px}
 
     .drawer{position:fixed;top:0;right:-430px;width:min(420px,100%);height:100vh;background:rgba(0,0,0,.96);border-left:1px solid var(--line);z-index:100;padding:24px;transition:.3s;box-shadow:-20px 0 60px rgba(255,255,255,.08);display:flex;flex-direction:column}.drawer.open{right:0}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:90;display:none}.overlay.open{display:block}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{width:42px;height:42px;background:#fff;color:#000;border:0;font-size:24px;cursor:pointer}.cart-items{flex:1;overflow:auto;display:grid;gap:12px}.cart-item{border:1px solid var(--softline);padding:14px;background:rgba(255,255,255,.04);display:grid;grid-template-columns:1fr auto;gap:10px}.remove{background:transparent;border:0;color:#fff;text-decoration:underline;cursor:pointer}.drawer-bottom{border-top:1px solid var(--softline);padding-top:16px}
 
     @media(max-width:960px){.nav-links{display:none}.hero-grid,.checkout,.footer-grid{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.dna-right,.molecule-left{opacity:.18}}
-    @media(max-width:640px){.products,.features,.trust,.form{grid-template-columns:1fr}.section-head{display:block}.copy{margin-top:12px}.hero{padding-top:125px}.vial-lab{height:460px}.ring{width:320px;height:320px}.ring.two{width:240px;height:240px}.brand span{font-size:12px}h1{font-size:42px}}
+    @media(max-width:640px){.policy-grid,.products,.features,.trust,.form{grid-template-columns:1fr}.section-head{display:block}.copy{margin-top:12px}.hero{padding-top:125px}.vial-lab{height:460px}.ring{width:320px;height:320px}.ring.two{width:240px;height:240px}.brand span{font-size:12px}h1{font-size:42px}}
   </style>
 </head>
 <body>
@@ -257,7 +270,7 @@
     <nav class="nav">
       <a href="#home" class="brand"><div class="brand-icon">⌬</div><span>MARPEPTIDES</span></a>
       <div class="nav-links">
-        <a href="#products">Products</a><a href="#quality">Quality</a><a href="#checkout">Checkout</a><a href="#legal">Legal</a>
+        <a href="#products">Products</a><a href="#quality">Quality</a><a href="#checkout">Checkout</a><a href="javascript:void(0)" onclick="openContact()">Contact</a><a href="#terms">Terms</a><a href="#privacy">Privacy</a>
       </div>
       <button class="cart-btn" onclick="toggleCart(true)">Cart <span id="cartCount">0</span></button>
     </nav>
@@ -291,7 +304,7 @@
 
     <section id="quality">
       <div class="container lab-panel">
-        <div class="section-head"><div><div class="kicker">QUALITY SYSTEM</div><h2 class="title">Lab Confidence</h2></div><p class="copy">Use this area for COA, batch number, tracking, customer support, and research disclaimers.</p></div>
+        <div class="section-head"><div><div class="kicker">QUALITY SYSTEM</div><h2 class="title">Lab Confidence</h2></div></div>
         <div class="features">
           <div class="feature"><div class="ico">🧬</div><h3>COA Files</h3><p>Add PDF links for each product batch and purity document.</p></div>
           <div class="feature"><div class="ico">📦</div><h3>Tracking</h3><p>Order status and tracking updates can be connected with a backend.</p></div>
@@ -334,7 +347,7 @@
             <div class="summary-line total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
             <a class="btn" href="#paypal-button-container" style="width:100%;margin-top:18px">Pay With PayPal</a>
             <button class="btn dark" style="width:100%;margin-top:12px" onclick="demoCheckout()">Bitcoin / Manual Checkout</button>
-            <div class="notice">PayPal charges the live cart total. Complete the shipping form before paying.</div>
+            
           </aside>
         </div>
       </div>
@@ -345,7 +358,72 @@
         <div class="lab-panel">
           <div class="kicker">LEGAL DISCLAIMER</div>
           <h2 class="title" style="margin-bottom:18px">Research Use Only</h2>
-          <p class="copy" style="max-width:900px">All products displayed are for laboratory research use only. Not for human consumption. Not intended to diagnose, treat, cure, or prevent any disease. Add your Terms, Privacy Policy, Refund Policy, Shipping Policy, and COA verification page before launch.</p>
+          <p class="copy" style="max-width:900px">All products displayed are for laboratory research use only. Not for human consumption. Not intended to diagnose, treat, cure, or prevent any disease. Products should be handled only by qualified professionals in controlled laboratory environments.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="terms">
+      <div class="container">
+        <div class="lab-panel policy-text">
+          <div class="kicker">TERMS OF SERVICE</div>
+          <h2 class="title" style="margin-bottom:18px">Terms & Conditions</h2>
+          <div class="policy-grid">
+            <div>
+              <h3>1. Research Use Only</h3>
+              <p>All products sold by MARPEPTIDES are intended strictly for laboratory research use only. Products are not for human consumption, animal consumption, medical use, diagnostic use, treatment use, or resale for any unapproved purpose.</p>
+              <h3>2. Customer Responsibility</h3>
+              <p>By purchasing from this website, the customer confirms that they are qualified to handle research materials and agrees to comply with all applicable local, state, and federal laws.</p>
+              <h3>3. Orders & Payments</h3>
+              <p>Orders may be paid through the available checkout options displayed on the website. PayPal and Bitcoin payment availability may change at any time. Bitcoin payments are final once confirmed on the blockchain.</p>
+              <h3>4. Shipping</h3>
+              <p>Customers are responsible for providing accurate shipping information. MARPEPTIDES is not responsible for delays caused by incorrect addresses, carrier delays, weather, customs, or other circumstances outside our control.</p>
+            </div>
+            <div>
+              <h3>5. Returns & Refunds</h3>
+              <p>Due to the nature of research materials, all sales are final unless an order issue is confirmed by MARPEPTIDES. Contact us within 48 hours of delivery if there is a problem with your order.</p>
+              <h3>6. Product Information</h3>
+              <p>Product descriptions, specifications, and research information are provided for informational purposes only and should not be interpreted as medical advice.</p>
+              <h3>7. Limitation of Liability</h3>
+              <p>MARPEPTIDES is not liable for misuse, improper handling, storage errors, unauthorized applications, or damages resulting from customer use of products.</p>
+              <h3>8. Contact</h3>
+              <p>For order questions, product documentation, or support, contact us at marpeptides@gmail.com.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="container">
+        <div class="lab-panel policy-text">
+          <div class="kicker">PRIVACY POLICY</div>
+          <h2 class="title" style="margin-bottom:18px">Privacy Policy</h2>
+          <div class="policy-grid">
+            <div>
+              <h3>Information We Collect</h3>
+              <p>We may collect information you provide when placing an order or contacting us, including name, email address, phone number, shipping address, billing details, order details, and message content.</p>
+              <h3>How We Use Information</h3>
+              <ul>
+                <li>To process orders and payments.</li>
+                <li>To ship products and provide tracking updates.</li>
+                <li>To respond to customer questions and support requests.</li>
+                <li>To maintain order records and improve our website.</li>
+              </ul>
+              <h3>Payment Information</h3>
+              <p>Payment details are processed by third-party payment providers such as PayPal or Bitcoin network/payment services. MARPEPTIDES does not store full card numbers on this static website.</p>
+            </div>
+            <div>
+              <h3>Sharing Information</h3>
+              <p>We do not sell personal information. Information may be shared only with service providers needed to process payments, fulfill orders, deliver shipments, or comply with legal requirements.</p>
+              <h3>Data Security</h3>
+              <p>We use reasonable safeguards to protect customer information. No online transmission or storage system can be guaranteed 100% secure.</p>
+              <h3>Cookies & Analytics</h3>
+              <p>This website may use basic cookies or analytics tools to improve site performance and user experience.</p>
+              <h3>Contact</h3>
+              <p>For privacy questions or requests, email marpeptides@gmail.com.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -368,6 +446,31 @@
     </section>
   </main>
 
+
+  <div class="contact-modal" id="contactModal" onclick="closeContact(event)">
+    <div class="contact-box">
+      <button class="contact-close" onclick="hideContact()">Close</button>
+      <h2>Contact MARPEPTIDES</h2>
+      <p class="contact-note">Send a message directly to marpeptides@gmail.com. Complete the form below and submit your request.</p>
+      <form action="https://formsubmit.co/marpeptides@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New MARPEPTIDES Website Contact">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="form">
+          <div class="field"><label>Name</label><input name="name" placeholder="Your name" required></div>
+          <div class="field"><label>Email</label><input name="email" type="email" placeholder="your@email.com" required></div>
+          <div class="field"><label>Phone</label><input name="phone" placeholder="Phone number"></div>
+          <div class="field"><label>Order Number</label><input name="order_number" placeholder="Optional"></div>
+          <div class="field full"><label>Subject</label><input name="subject" placeholder="How can we help?" required></div>
+          <div class="field full"><label>Message</label><textarea name="message" rows="6" placeholder="Write your message here..." required></textarea></div>
+        </div>
+        <button class="btn" type="submit" style="margin-top:18px;width:100%">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <button class="contact-launch" onclick="openContact()">✉ Contact</button>
+
   <div class="details-modal" id="detailsModal" onclick="closeDetails(event)">
     <div class="details-box" id="detailsBox">
       <button class="details-close" onclick="hideDetails()">Close</button>
@@ -379,8 +482,8 @@
     <div class="container footer-grid">
       <div><div class="brand" style="margin-bottom:14px"><div class="brand-icon">⌬</div><span>MARPEPTIDES</span></div><p>www.marpeptides.com<br>marpeptides@gmail.com<br>Premium MARPEPTIDES research laboratory store.</p></div>
       <div><h4>Store</h4><a href="#products">Products</a><a href="#checkout">Checkout</a></div>
-      <div><h4>Support</h4><a href="#">Tracking</a><a href="#">COA</a><a href="#">Contact</a></div>
-      <div><h4>Legal</h4><a href="#legal">RUO Disclaimer</a><a href="#">Terms</a><a href="#">Privacy</a></div>
+      <div><h4>Support</h4><a href="#">Tracking</a><a href="#">COA</a><a href="javascript:void(0)" onclick="openContact()">Contact</a></div>
+      <div><h4>Legal</h4><a href="#legal">RUO Disclaimer</a><a href="#terms">Terms</a><a href="#privacy">Privacy</a></div>
     </div>
   </footer>
 
@@ -444,6 +547,10 @@
     function showDetails(i){const p=products[i];document.getElementById('detailsContent').innerHTML=`<h2>${p.name} ${p.mg}</h2>${p.details}<h3>Additional information</h3><p>COA available. USA lab tested. Store according to product requirements.</p><h3>Reviews</h3><p>Customer review system can be connected with Shopify, WooCommerce, or a backend database.</p>`;document.getElementById('detailsModal').classList.add('open')}
     function hideDetails(){document.getElementById('detailsModal').classList.remove('open')}
     function closeDetails(e){if(e.target.id==='detailsModal')hideDetails()}
+
+    function openContact(){document.getElementById('contactModal').classList.add('open')}
+    function hideContact(){document.getElementById('contactModal').classList.remove('open')}
+    function closeContact(e){if(e.target.id==='contactModal')hideContact()}
 
     function buildDNA(){
       const dna=document.getElementById('dnaRight');
