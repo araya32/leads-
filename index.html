@@ -49,7 +49,7 @@
     }
 
     .lab-bg::before{
-      content:\"\";
+      content:"";
       position:absolute;
       inset:0;
       background:url('https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
@@ -62,8 +62,6 @@
     @keyframes bgPulse{
       from{transform:scale(1);opacity:.10}
       to{transform:scale(1.08);opacity:.18}
-    }
-      overflow:hidden;
     }
 
     .grid-lines{
@@ -273,8 +271,8 @@
           <h1>MARPEPTIDES<br>Research Lab</h1>
           
           <div class="buttons"><a class="btn" href="#products">View Products</a><a class="btn dark" href="#checkout">Checkout</a></div>
-<div class="trust"> <div><strong>PREMIUM</strong>Research laboratory design</div> <div><strong>SECURE</strong>Encrypted checkout</div> <div><strong>FAST</strong>Worldwide shipping</div> <div><strong>QUALITY</strong>COA verified batches</div>
-</div>
+          <div class="trust"><div><strong>PAYPAL</strong>Payment section</div><div><strong>BITCOIN</strong>BTC instructions</div><div><strong>RUO</strong>Research use only</div></div>
+        </div>
         <div class="hero-card">
           <div class="vial-lab">
             <div class="ring"></div><div class="ring two"></div>
@@ -310,20 +308,20 @@
           <div class="card">
             <h3>Shipping Address</h3>
             <div class="form">
-              <div class="field"><label>First Name</label><input placeholder="First name"></div>
-              <div class="field"><label>Last Name</label><input placeholder="Last name"></div>
-              <div class="field full"><label>Email</label><input type="email" placeholder="customer@email.com"></div>
-              <div class="field full"><label>Phone</label><input placeholder="Phone number"></div>
-              <div class="field full"><label>Street Address</label><input placeholder="Shipping address"></div>
-              <div class="field"><label>City</label><input placeholder="City"></div>
-              <div class="field"><label>State</label><input placeholder="State"></div>
-              <div class="field"><label>ZIP Code</label><input placeholder="ZIP"></div>
-              <div class="field"><label>Country</label><select><option>United States</option><option>Canada</option><option>Other</option></select></div>
+              <div class="field"><label>First Name</label><input id="firstName" placeholder="First name"></div>
+              <div class="field"><label>Last Name</label><input id="lastName" placeholder="Last name"></div>
+              <div class="field full"><label>Email</label><input id="email" type="email" placeholder="customer@email.com"></div>
+              <div class="field full"><label>Phone</label><input id="phone" placeholder="Phone number"></div>
+              <div class="field full"><label>Street Address</label><input id="address" placeholder="Shipping address"></div>
+              <div class="field"><label>City</label><input id="city" placeholder="City"></div>
+              <div class="field"><label>State</label><input id="state" placeholder="State"></div>
+              <div class="field"><label>ZIP Code</label><input id="zip" placeholder="ZIP"></div>
+              <div class="field"><label>Country</label><select id="country"><option>United States</option><option>Canada</option><option>Other</option></select></div>
             </div>
 
             <h3 style="margin-top:28px">Payment Method</h3>
-            <div class="paybox" style="display:block"><span>PayPal Hosted Button</span><strong style="float:right">PAY NOW</strong><div id="paypal-container-HR4M3KAUUV59J" style="margin-top:14px"></div></div>
-            <div class="paybox"><span>Bitcoin Wallet Payment</span><strong>BTC READY</strong></div>
+            <div class="paybox" style="display:block"><span>PayPal Secure Checkout</span><strong style="float:right">LIVE</strong><div style="clear:both"></div><div id="paypal-button-container" style="margin-top:18px;min-height:48px"></div><div id="paypal-error" class="notice" style="display:none;color:#fff;margin-top:14px">PayPal did not load. Check HTTPS, Live Client ID, and browser console.</div></div>
+            <div class="paybox" style="display:block"><span>Bitcoin Wallet Payment</span><strong style="float:right">BTC READY</strong><div style="clear:both"></div><div style="margin-top:12px;color:#bbb;line-height:1.6;word-break:break-all"><strong style="color:#fff">BTC Wallet:</strong><br>32y6gQdQGBUSMSznyJbppMm22iQZsV1Q86<br><br><button class="btn dark" onclick="copyBTC()">Copy BTC Wallet</button></div></div>
             <div class="paybox"><span>Coupon Code</span><strong>APPLY</strong></div>
             
           </div>
@@ -334,9 +332,9 @@
             <div class="summary-line"><span>Shipping</span><strong>$12.99</strong></div>
             <div class="summary-line"><span>Tax</span><strong>Calculated later</strong></div>
             <div class="summary-line total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
-            <a class="btn" href="#paypal-container-HR4M3KAUUV59J" style="width:100%;margin-top:18px">Pay With PayPal</a>
+            <a class="btn" href="#paypal-button-container" style="width:100%;margin-top:18px">Pay With PayPal</a>
             <button class="btn dark" style="width:100%;margin-top:12px" onclick="demoCheckout()">Bitcoin / Manual Checkout</button>
-            <div class="notice">This HTML does not process real payments by itself. It is the front-end design ready for payment integration.</div>
+            <div class="notice">PayPal charges the live cart total. Complete the shipping form before paying.</div>
           </aside>
         </div>
       </div>
@@ -393,11 +391,9 @@
     <div class="drawer-bottom"><div class="summary-line total"><span>Total</span><strong id="cartTotal">$0.00</strong></div><a class="btn" style="width:100%;margin-top:14px" href="#checkout" onclick="toggleCart(false)">Go Checkout</a></div>
   </aside>
 
-  <script src="https://www.paypal.com/sdk/js?client-id=BAA_REPLACE_WITH_YOUR_PAYPAL_CLIENT_ID&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=Ae-hu3Wjb7B2WWc44ObvD_J04f2f-MjmS4aBczna0znrRoSJNzYr5og1LZ7rCvH2nzuFWoyXALvAegBu&currency=USD&intent=capture"></script>
 
   <script>
-    const PAYPAL_PAYMENT_LINK = 'https://www.paypal.com/paypalme/MARPEPTIDES'; // Cambia este link por tu link real de PayPal.Me o PayPal Checkout
-
     const products=[
       {
         name:'GLP3',mg:'10MG',price:89,
@@ -426,18 +422,25 @@
       },
       {name:'TB500',mg:'10MG',price:95,desc:'Research product card with 3D glass vial presentation.',details:`<h3>TB500 10MG</h3><p>Premium research product display with COA-ready batch documentation area.</p><p><strong>For research use only. Not for human consumption.</strong></p>`}
     ];
-    let cart=[];
+    const SHIPPING = 12.99;
+    let cart = JSON.parse(localStorage.getItem('marpeptides_cart') || '[]');
+    let paypalRendered = false;
     const productGrid=document.getElementById('productGrid'),cartCount=document.getElementById('cartCount'),cartItems=document.getElementById('cartItems'),cartTotal=document.getElementById('cartTotal'),summarySubtotal=document.getElementById('summarySubtotal'),summaryTotal=document.getElementById('summaryTotal');
-    const money=v=>'$'+v.toFixed(2);
+    const money=v=>'$'+Number(v||0).toFixed(2);
+    const getSubtotal=()=>cart.reduce((sum,item)=>sum+(item.price*item.qty),0);
+    const getTotal=()=>cart.length ? getSubtotal()+SHIPPING : 0;
+    function saveCart(){localStorage.setItem('marpeptides_cart', JSON.stringify(cart));}
 
     function renderProducts(){
       productGrid.innerHTML=products.map((p,i)=>`<article class="product"><div class="tag">RUO ONLY</div><div class="p-stage"><div class="p-vial"><div class="p-cap"></div><div class="p-neck"></div><div class="p-body"><div class="p-label"><strong>${p.name}</strong><span>${p.mg}</span></div></div></div></div><h3>${p.name} ${p.mg}</h3><p>${p.desc}</p><div class="price-row"><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${i})">Add</button></div><button class="details-btn" onclick="showDetails(${i})">Description / Reviews</button></article>`).join('');
     }
-    function addToCart(i){const p=products[i],e=cart.find(x=>x.name===p.name);e?e.qty++:cart.push({...p,qty:1});renderCart();toggleCart(true)}
-    function removeFromCart(i){cart.splice(i,1);renderCart()}
-    function renderCart(){const subtotal=cart.reduce((s,x)=>s+x.price*x.qty,0),total=subtotal?subtotal+12.99:0;cartCount.textContent=cart.reduce((s,x)=>s+x.qty,0);cartTotal.textContent=money(total);summarySubtotal.textContent=money(subtotal);summaryTotal.textContent=money(total);cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><strong>${x.name} ${x.mg}</strong><br><small>Qty ${x.qty} × ${money(x.price)}</small></div><button class="remove" onclick="removeFromCart(${i})">Remove</button></div>`).join(''):'<p style="color:#aaa;line-height:1.7">Your cart is empty.</p>'}
+    function addToCart(i){const p=products[i],e=cart.find(x=>x.name===p.name && x.mg===p.mg);e?e.qty++:cart.push({...p,qty:1});saveCart();renderCart();toggleCart(true)}
+    function changeQty(i,amount){cart[i].qty += amount;if(cart[i].qty<=0)cart.splice(i,1);saveCart();renderCart()}
+    function removeFromCart(i){cart.splice(i,1);saveCart();renderCart()}
+    function renderCart(){const subtotal=getSubtotal(),total=getTotal();cartCount.textContent=cart.reduce((s,x)=>s+x.qty,0);cartTotal.textContent=money(total);summarySubtotal.textContent=money(subtotal);summaryTotal.textContent=money(total);cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><strong>${x.name} ${x.mg}</strong><br><small>${money(x.price)} each</small><div style="display:flex;gap:8px;align-items:center;margin-top:8px"><button class="add" style="padding:5px 10px" onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button class="add" style="padding:5px 10px" onclick="changeQty(${i},1)">+</button></div></div><div style="text-align:right"><strong>${money(x.price*x.qty)}</strong><br><button class="remove" onclick="removeFromCart(${i})">Remove</button></div></div>`).join(''):'<p style="color:#aaa;line-height:1.7">Your cart is empty.</p>'}
     function toggleCart(open){document.getElementById('drawer').classList.toggle('open',open);document.getElementById('overlay').classList.toggle('open',open)}
-    function demoCheckout(){alert('Bitcoin demo: replace this alert with your BTC wallet address, payment processor link, backend database, and order email system.')}
+    function copyBTC(){navigator.clipboard.writeText('32y6gQdQGBUSMSznyJbppMm22iQZsV1Q86');alert('BTC wallet copied.')}
+    function demoCheckout(){alert('Bitcoin checkout: send payment to the BTC wallet shown, then contact marpeptides@gmail.com with your order and transaction ID.')}
     function showDetails(i){const p=products[i];document.getElementById('detailsContent').innerHTML=`<h2>${p.name} ${p.mg}</h2>${p.details}<h3>Additional information</h3><p>COA available. USA lab tested. Store according to product requirements.</p><h3>Reviews</h3><p>Customer review system can be connected with Shopify, WooCommerce, or a backend database.</p>`;document.getElementById('detailsModal').classList.add('open')}
     function hideDetails(){document.getElementById('detailsModal').classList.remove('open')}
     function closeDetails(e){if(e.target.id==='detailsModal')hideDetails()}
@@ -466,169 +469,32 @@
       labels.forEach(([t,x,y])=>html+=`<div class="formula" style="left:${x}px;top:${y}px">${t}</div>`);
       mol.innerHTML=html;
     }
-    buildDNA();buildMolecule();renderProducts();renderCart();
-
-    if (window.paypal && paypal.HostedButtons) {
-      paypal.HostedButtons({
-        hostedButtonId: "HR4M3KAUUV59J",
-      }).render("#paypal-container-HR4M3KAUUV59J");
+    function getOrderDescription(){return cart.map(item=>`${item.name} ${item.mg} x ${item.qty}`).join(' | ')}
+    function validateBeforePay(){
+      if(!cart.length){alert('Please add products to the cart first.');return false;}
+      const required=['firstName','lastName','email','address','city','state','zip'];
+      for(const id of required){const field=document.getElementById(id);if(field && !field.value.trim()){alert('Please complete the shipping form before paying.');field.focus();return false;}}
+      return true;
     }
+    function renderPayPalButton(){
+      const container=document.getElementById('paypal-button-container');
+      const errorBox=document.getElementById('paypal-error');
+      if(!window.paypal){container.innerHTML='<p style="color:#ffb3b3">PayPal SDK did not load. Check HTTPS and Client ID.</p>'; if(errorBox) errorBox.style.display='block'; return;}
+      if(paypalRendered) return;
+      paypalRendered=true;
+      paypal.Buttons({
+        style:{layout:'vertical', color:'gold', shape:'pill', label:'pay'},
+        onClick:function(){return validateBeforePay();},
+        createOrder:function(data,actions){
+          const subtotal=getSubtotal();
+          const total=getTotal();
+          return actions.order.create({purchase_units:[{description:'MARPEPTIDES Order',custom_id:getOrderDescription().slice(0,127),amount:{currency_code:'USD',value:total.toFixed(2),breakdown:{item_total:{currency_code:'USD',value:subtotal.toFixed(2)},shipping:{currency_code:'USD',value:cart.length?SHIPPING.toFixed(2):'0.00'}}},items:cart.map(item=>({name:`${item.name} ${item.mg}`.slice(0,127),quantity:String(item.qty),unit_amount:{currency_code:'USD',value:Number(item.price).toFixed(2)}}))}]});
+        },
+        onApprove:function(data,actions){return actions.order.capture().then(function(details){alert('Payment completed. Thank you, '+(details.payer && details.payer.name ? details.payer.name.given_name : 'customer')+'!');});},
+        onError:function(err){console.error('PayPal error:',err); if(errorBox) errorBox.style.display='block'; alert('PayPal error. Please try again or contact marpeptides@gmail.com.');}
+      }).render('#paypal-button-container');
+    }
+    buildDNA();buildMolecule();renderProducts();renderCart();renderPayPalButton();
   </script>
 </body>
 </html>
-<script src="https://www.paypal.com/sdk/js?client-id=Ae-hu3Wjb7B2WWc44ObvD_J04f2f-MjmS4aBczna0znrRoSJNzYr5og1LZ7rCvH2nzuFWoyXALvAegBu&currency=USD"></script>
-
-<section class="shop">
-  <div class="product">
-    <h3>GLP3 10MG</h3>
-    <p>$89.00</p>
-    <button onclick="addToCart('GLP3 10MG', 89)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <h3>WOLVERINE BPC/TB-500 BLEND</h3>
-    <p>$90.00</p>
-    <button onclick="addToCart('WOLVERINE BPC/TB-500 BLEND', 90)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <h3>SEMAX 10MG</h3>
-    <p>$79.00</p>
-    <button onclick="addToCart('SEMAX 10MG', 79)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <h3>BAC WATER 10ML</h3>
-    <p>$29.00</p>
-    <button onclick="addToCart('BAC WATER 10ML', 29)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <h3>EPITHALON 10MG</h3>
-    <p>$85.00</p>
-    <button onclick="addToCart('EPITHALON 10MG', 85)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <h3>TB500 10MG</h3>
-    <p>$95.00</p>
-    <button onclick="addToCart('TB500 10MG', 95)">Add to Cart</button>
-  </div>
-</section>
-
-<section class="cart-box">
-  <h2>Shopping Cart</h2>
-  <div id="cart-items"></div>
-  <h3>Total: $<span id="cart-total">0.00</span></h3>
-  <div id="paypal-button-container"></div>
-</section>
-
-<style>
-.shop {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.product, .cart-box {
-  background: #111;
-  color: white;
-  padding: 20px;
-  border: 1px solid #333;
-  border-radius: 18px;
-  text-align: center;
-}
-
-button {
-  background: white;
-  color: black;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  border-bottom: 1px solid #333;
-  padding: 10px 0;
-}
-</style>
-
-<script>
-let cart = [];
-
-function addToCart(name, price) {
-  const existing = cart.find(item => item.name === name);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ name, price, qty: 1 });
-  }
-
-  renderCart();
-}
-
-function removeFromCart(name) {
-  cart = cart.filter(item => item.name !== name);
-  renderCart();
-}
-
-function getTotal() {
-  return cart.reduce((sum, item) => sum + item.price * item.qty, 0).toFixed(2);
-}
-
-function renderCart() {
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-
-  cartItems.innerHTML = "";
-
-  cart.forEach(item => {
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <span>${item.name} x ${item.qty}</span>
-        <span>$${(item.price * item.qty).toFixed(2)}</span>
-        <button onclick="removeFromCart('${item.name}')">X</button>
-      </div>
-    `;
-  });
-
-  cartTotal.textContent = getTotal();
-}
-
-paypal.Buttons({
-  createOrder: function(data, actions) {
-    if (cart.length === 0) {
-      alert("Please add products to cart first.");
-      return;
-    }
-
-    return actions.order.create({
-      purchase_units: [{
-        description: "MARPEPTIDES Order",
-        amount: {
-          value: getTotal()
-        }
-      }]
-    });
-  },
-
-  onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-      alert("Payment completed. Thank you, " + details.payer.name.given_name);
-      cart = [];
-      renderCart();
-    });
-  },
-
-  onError: function(err) {
-    console.error(err);
-    alert("Payment error.");
-  }
-}).render("#paypal-button-container");
-</script>
