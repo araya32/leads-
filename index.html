@@ -1,297 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MARPEPTIDES | 3D Vial Funnel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-:root{--navy:#020b18;--blue:#006bff;--blue2:#003b96;--lime:#8cff00;--green:#39b400;--white:#fff;--glass:rgba(255,255,255,.08)}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,Arial,sans-serif;background:#020b18;color:#fff;overflow-x:hidden}a{text-decoration:none;color:inherit}.bg{position:fixed;inset:0;background:radial-gradient(circle at 75% 20%,rgba(0,119,255,.45),transparent 36%),radial-gradient(circle at 20% 10%,rgba(140,255,0,.12),transparent 28%),linear-gradient(180deg,#020b18,#00142c 52%,#020b18);z-index:-3}.bg:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,119,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(0,119,255,.09) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(circle at center,black,transparent 78%)}.molecules{position:fixed;right:-80px;top:70px;width:520px;height:520px;border-radius:50%;opacity:.28;background:repeating-radial-gradient(circle,transparent 0 28px,rgba(0,119,255,.35) 29px 30px);filter:blur(.2px);z-index:-2;animation:pulse 8s infinite ease-in-out}.top{position:sticky;top:0;z-index:20;background:rgba(2,11,24,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.12)}.nav{max-width:1260px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:18px 24px}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:900;letter-spacing:4px}.brandmark{width:42px;height:34px;position:relative}.brandmark:before,.brandmark:after{content:"";position:absolute;inset:0;border-left:4px solid var(--blue);border-top:4px solid var(--blue);transform:skewY(-26deg)}.brandmark:after{left:17px;border-color:var(--lime);transform:skewY(26deg)}.brand span b{color:var(--lime)}.navlinks{display:flex;gap:28px;font-size:13px;font-weight:800}.navcta{display:flex;gap:12px;align-items:center}.pill{padding:12px 18px;border:1px solid rgba(255,255,255,.3);border-radius:999px;font-weight:800;background:rgba(255,255,255,.04)}.btn{border:0;border-radius:999px;background:linear-gradient(135deg,#0077ff,#0054ff);color:#fff;padding:14px 24px;font-weight:900;letter-spacing:.3px;box-shadow:0 15px 35px rgba(0,119,255,.32);cursor:pointer;transition:.25s}.btn:hover{transform:translateY(-3px);box-shadow:0 20px 45px rgba(0,119,255,.48)}.btn.outline{background:transparent;border:1px solid var(--lime);box-shadow:none}.hero{max-width:1260px;margin:auto;display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center;padding:64px 24px 26px}.badge{display:inline-flex;gap:10px;align-items:center;border:1px solid #117bff;border-radius:999px;padding:10px 22px;color:#dbeaff;font-weight:900;letter-spacing:1.6px;background:rgba(0,119,255,.08)}h1{font-size:clamp(46px,7vw,84px);line-height:.95;margin:28px 0 22px;font-weight:900;letter-spacing:-4px;text-shadow:0 6px 18px rgba(0,0,0,.4)}h1 span{color:#0878ff;display:block}.lead{font-size:20px;line-height:1.55;color:#d3e3ff;max-width:560px}.heroicons{display:flex;gap:24px;flex-wrap:wrap;margin:34px 0}.heroicons .item{display:flex;gap:12px;align-items:center}.heroicons i{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.28);display:grid;place-items:center;color:var(--lime);font-size:20px}.actions{display:flex;gap:16px;flex-wrap:wrap}.rating{margin-top:24px;color:#dbeaff}.stars{color:var(--lime);letter-spacing:4px}.stage{position:relative;min-height:630px;display:grid;place-items:center;perspective:1200px}.halo{position:absolute;width:470px;height:470px;border-radius:50%;background:radial-gradient(circle,rgba(0,119,255,.34),transparent 66%);filter:blur(8px);animation:pulse 5s infinite}.pedestal{position:absolute;bottom:35px;width:520px;height:84px;border-radius:50%;background:radial-gradient(ellipse at center,#79d7ff 0%,#006bff 18%,#051a35 48%,transparent 70%);box-shadow:0 0 30px #0077ff, inset 0 0 22px rgba(255,255,255,.25);transform:rotateX(70deg)}.vial3d{--label:#fff;--accent:#8cff00;width:260px;height:470px;position:relative;transform-style:preserve-3d;animation:floatVial 4.8s infinite ease-in-out;filter:drop-shadow(0 32px 34px rgba(0,0,0,.55))}.vial3d:hover{animation:spinVial 1.6s ease-in-out}.cap{position:absolute;top:0;left:30px;width:200px;height:64px;border-radius:26px 26px 18px 18px;background:linear-gradient(90deg,#002272,#006bff 18%,#001f75 42%,#008dff 65%,#002875);box-shadow:inset 12px 0 13px rgba(255,255,255,.32),inset -15px 0 12px rgba(0,0,0,.42),0 8px 0 #001947,0 12px 22px rgba(0,70,255,.45)}.cap:before{content:"";position:absolute;top:9px;left:18px;right:18px;height:10px;border-radius:100px;background:rgba(255,255,255,.7);filter:blur(1px)}.neck{position:absolute;top:75px;left:68px;width:124px;height:68px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(120,130,140,.35),rgba(255,255,255,.88));box-shadow:inset 18px 0 18px rgba(255,255,255,.78),inset -18px 0 16px rgba(0,0,0,.45)}.bottle{position:absolute;left:20px;top:118px;width:220px;height:330px;border-radius:55px 55px 42px 42px;background:linear-gradient(90deg,rgba(255,255,255,.25) 0%,rgba(255,255,255,.9) 10%,rgba(255,255,255,.25) 18%,rgba(255,255,255,.08) 36%,rgba(255,255,255,.28) 58%,rgba(255,255,255,.9) 78%,rgba(255,255,255,.14) 100%);border:3px solid rgba(255,255,255,.78);box-shadow:inset 20px 0 18px rgba(255,255,255,.55),inset -20px 0 20px rgba(0,0,0,.35),0 20px 26px rgba(0,0,0,.32);overflow:hidden}.bottle:before{content:"";position:absolute;left:28px;top:15px;width:32px;height:280px;background:linear-gradient(180deg,rgba(255,255,255,.75),transparent);border-radius:999px;filter:blur(1px)}.bottle:after{content:"";position:absolute;left:38px;right:38px;bottom:14px;height:36px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.82),rgba(0,0,0,.1) 62%,rgba(0,0,0,.45));opacity:.75}.label{position:absolute;left:-3px;right:-3px;top:92px;height:196px;background:linear-gradient(90deg,#fff,#f2f7ff 48%,#fff);color:#061632;box-shadow:0 0 0 1px rgba(0,0,0,.15),inset 0 16px 12px rgba(255,255,255,.9);overflow:hidden;text-align:center}.label:before,.label:after{content:"";position:absolute;top:0;width:54px;height:100%;opacity:.35;background-image:radial-gradient(circle,#0077ff 2px,transparent 3px);background-size:19px 19px}.label:before{left:0}.label:after{right:0}.m-logo{font-size:30px;font-weight:900;margin-top:14px;letter-spacing:1px}.m-logo .m{color:#05245e}.m-logo .p{color:#43aa00}.product-title{font-size:52px;font-weight:900;letter-spacing:-3px;font-style:italic;color:#001b57;text-shadow:2px 2px 0 rgba(0,0,0,.12)}.product-title .num{color:#2ead00}.research{background:#03142c;color:#fff;margin:2px 16px 0;border-radius:0 0 16px 16px;padding:7px;font-weight:900;font-size:13px;letter-spacing:1px}.iconsrow{display:flex;justify-content:center;gap:10px;background:#050b17;color:#fff;margin-top:0;padding:9px 6px;font-size:8px;font-weight:900}.iconsrow div{display:flex;align-items:center;gap:4px}.iconsrow i{color:var(--accent);font-size:15px}.bottom-band{position:absolute;left:0;right:0;bottom:0;height:58px;background:linear-gradient(100deg,var(--accent),#0057d9);color:#00112b;text-align:left;padding:10px 18px;font-weight:900}.mg{position:absolute;right:18px;bottom:10px;background:#061632;color:#fff;padding:7px 18px;border-radius:12px;font-size:20px}.gridwrap{max-width:1260px;margin:0 auto 46px;padding:0 24px}.stats,.quality,.products,.reviews{border:1px solid rgba(255,255,255,.16);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));box-shadow:0 20px 60px rgba(0,0,0,.22);backdrop-filter:blur(12px)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-bottom:24px}.stat{padding:24px;display:flex;gap:15px;align-items:center;border-right:1px solid rgba(255,255,255,.15)}.stat:last-child{border:0}.stat i{font-size:36px;color:var(--lime)}.stat b{display:block;color:#82aaff;font-size:30px}.section-title{text-align:center;font-size:34px;font-weight:900;margin:0;padding:24px 0 8px;letter-spacing:1px}.subtitle{text-align:center;color:#c8d9f6}.productgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;padding:22px 32px 32px}.card{position:relative;text-align:center;border:1px solid rgba(255,255,255,.14);border-radius:24px;background:radial-gradient(circle at 50% 0,rgba(0,119,255,.2),rgba(255,255,255,.04));padding:16px 14px 22px;overflow:hidden;transition:.3s}.card:hover{transform:translateY(-8px);border-color:#0077ff;box-shadow:0 0 35px rgba(0,119,255,.3)}.card .vial3d{transform:scale(.52);transform-origin:top center;margin:0 auto -210px;animation:miniFloat 4s infinite ease-in-out}.card:hover .vial3d{animation:miniSpin 1.4s ease-in-out}.card h3{font-size:22px;margin-top:224px}.card .dose{color:#d5e5ff;margin:6px 0 12px}.price{font-size:28px;font-weight:900;margin-bottom:14px}.quality{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:24px 0}.q{padding:24px;display:flex;gap:16px;border-right:1px solid rgba(255,255,255,.14)}.q:last-child{border:0}.q i{font-size:36px;color:var(--lime)}.q b{color:var(--lime)}.reviews{padding:0 24px 24px}.reviewgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.review{border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:22px;background:rgba(255,255,255,.06)}footer{padding:32px;text-align:center;color:#aebfe2}.cart{position:fixed;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;background:#006bff;display:grid;place-items:center;font-size:24px;z-index:30;box-shadow:0 18px 30px rgba(0,119,255,.45)}
-.checkout-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(12px);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}.checkout-box{width:min(560px,96vw);border:1px solid rgba(255,255,255,.2);border-radius:28px;background:linear-gradient(180deg,#071a38,#020b18);box-shadow:0 30px 100px rgba(0,0,0,.55),0 0 45px rgba(0,119,255,.28);padding:26px;position:relative}.checkout-box h2{font-size:28px;margin-bottom:10px}.checkout-close{position:absolute;right:22px;top:16px;font-size:28px;cursor:pointer;color:#b8c9e8}.checkout-summary{border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.06);padding:16px;margin:16px 0;color:#e8f2ff}.pay-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.pay-card{border:1px solid rgba(255,255,255,.18);border-radius:18px;background:rgba(255,255,255,.06);padding:18px;cursor:pointer;transition:.25s}.pay-card:hover,.pay-card.active{border-color:#0077ff;box-shadow:0 0 26px rgba(0,119,255,.28);transform:translateY(-3px)}.pay-card i{font-size:32px;margin-bottom:10px}.payment-panel{display:none;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.06);padding:16px;margin-top:14px}.payment-panel.active{display:block}.btc-address{font-family:monospace;word-break:break-all;background:#010712;border:1px solid rgba(140,255,0,.35);border-radius:14px;padding:12px;margin:12px 0;color:#8cff00}.field{width:100%;padding:13px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;margin:8px 0}.mini-note{color:#b7c9e8;font-size:13px;line-height:1.45}.cart-panel{position:fixed;right:-430px;top:0;width:min(410px,96vw);height:100vh;background:#06162e;z-index:70;border-left:1px solid rgba(0,119,255,.45);box-shadow:-20px 0 80px rgba(0,0,0,.4);transition:.3s;padding:24px;overflow:auto}.cart-panel.open{right:0}.cart-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.12);padding:12px 0}.qty-btn{background:#0077ff;color:#fff;border:0;border-radius:8px;padding:4px 8px;cursor:pointer}.cart-count{position:absolute;right:-4px;top:-4px;background:#8cff00;color:#020b18;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:12px;font-weight:900}@media(max-width:640px){.pay-choice{grid-template-columns:1fr}}
-@keyframes floatVial{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-24px) rotateY(8deg)}}@keyframes spinVial{0%{transform:translateY(-8px) rotateY(-12deg)}50%{transform:translateY(-28px) rotateY(18deg) rotateZ(1deg)}100%{transform:translateY(-8px) rotateY(-12deg)}}@keyframes miniFloat{0%,100%{transform:scale(.52) translateY(0) rotateY(-8deg)}50%{transform:scale(.52) translateY(-18px) rotateY(8deg)}}@keyframes miniSpin{0%{transform:scale(.52) rotateY(-12deg)}50%{transform:scale(.52) rotateY(22deg)}100%{transform:scale(.52) rotateY(-12deg)}}@keyframes pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.68;transform:scale(1.06)}}@media(max-width:980px){.hero{grid-template-columns:1fr}.navlinks{display:none}.productgrid,.quality,.stats,.reviewgrid{grid-template-columns:1fr 1fr}.stage{min-height:560px}.stat,.q{border-right:0}}@media(max-width:640px){.productgrid,.quality,.stats,.reviewgrid{grid-template-columns:1fr}.navcta .pill{display:none}.brand{font-size:16px}.hero{padding-top:38px}h1{letter-spacing:-2px}.stage{transform:scale(.82);margin:-70px 0}.productgrid{padding:18px}.card h3{margin-top:214px}}
-</style>
-<!-- PayPal SDK: replace client-id=sb with your LIVE PayPal Business Client ID before publishing -->
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD&components=buttons"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MARPEPTIDES | Research Laboratory Store</title>
+  <meta name="description" content="MARPEPTIDES premium black and white 3D laboratory research website with PayPal, Bitcoin, cart and shipping form UI." />
 
-<style>
-.reviewgrid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))!important}
-.review{position:relative;overflow:hidden}
-.review:before{content:"Verified";position:absolute;right:14px;top:14px;font-size:10px;font-weight:900;color:#020b18;background:#8cff00;border-radius:999px;padding:4px 9px}
-.checkout-box{width:min(760px,96vw)!important;max-height:94vh;overflow:auto}
-.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.field{margin:0!important}
-.field.full{grid-column:1/-1}
-.field::placeholder{color:#9eb3d3}
-.required{border-color:rgba(255,77,77,.9)!important;box-shadow:0 0 0 2px rgba(255,77,77,.14)}
-.error{display:none;color:#ff9c9c;background:rgba(255,0,0,.08);border:1px solid rgba(255,77,77,.35);padding:12px;border-radius:12px;margin:12px 0}
-.success{display:none;color:#8cff00;background:rgba(140,255,0,.08);border:1px solid rgba(140,255,0,.35);padding:12px;border-radius:12px;margin:12px 0}
-#paypal-button-container{min-height:45px;margin-top:12px}
-@media(max-width:640px){.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <style>
+    :root{
+      --bg:#000;
+      --white:#fff;
+      --silver:#cfcfcf;
+      --muted:#8f8f8f;
+      --panel:rgba(255,255,255,.045);
+      --panel2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.34);
+      --softline:rgba(255,255,255,.14);
+      --glow:0 0 28px rgba(255,255,255,.28),0 0 80px rgba(255,255,255,.08);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter,Arial,sans-serif;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font-family:inherit}
+
+    .lab-bg{
+      position:fixed;
+      inset:0;
+      z-index:-10;
+      background:
+        radial-gradient(circle at 20% 25%,rgba(255,255,255,.13),transparent 26%),
+        radial-gradient(circle at 78% 18%,rgba(255,255,255,.11),transparent 28%),
+        radial-gradient(circle at 52% 92%,rgba(255,255,255,.09),transparent 30%),
+        linear-gradient(140deg,#000,#050505 45%,#000);
+      overflow:hidden;
+    }
+
+    .lab-bg::before{
+      content:\"\";
+      position:absolute;
+      inset:0;
+      background:url('https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+      opacity:.12;
+      mix-blend-mode:screen;
+      filter:grayscale(100%) contrast(130%) brightness(.55);
+      animation:bgPulse 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse{
+      from{transform:scale(1);opacity:.10}
+      to{transform:scale(1.08);opacity:.18}
+    }
+      overflow:hidden;
+    }
+
+    .grid-lines{
+      position:absolute;
+      inset:-80px;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:58px 58px;
+      transform:perspective(800px) rotateX(58deg) translateY(-120px);
+      animation:gridMove 12s linear infinite;
+      opacity:.55;
+    }
+    @keyframes gridMove{to{background-position:0 116px,116px 0}}
+
+    .scanline{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:99;
+      background:repeating-linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.035) 1px,transparent 1px,transparent 4px);
+      opacity:.14;
+    }
+
+    .dna-right{
+      position:absolute;
+      right:-50px;
+      top:4%;
+      width:260px;
+      height:92vh;
+      opacity:.34;
+      filter:drop-shadow(0 0 22px rgba(255,255,255,.28));
+      animation:dnaFloat 8s ease-in-out infinite alternate;
+    }
+    @keyframes dnaFloat{to{transform:translateY(-25px) rotate(2deg)}}
+
+    .dna-strand{
+      position:absolute;
+      inset:0;
+    }
+    .dna-strand span{
+      position:absolute;
+      left:50%;
+      width:120px;
+      height:1px;
+      background:rgba(255,255,255,.9);
+      transform-origin:left center;
+      box-shadow:0 0 12px rgba(255,255,255,.55);
+    }
+    .dna-strand i{
+      position:absolute;
+      width:8px;height:8px;border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 14px #fff;
+    }
+
+    .molecule-left{
+      position:absolute;
+      left:-20px;
+      top:6%;
+      width:270px;
+      height:80vh;
+      opacity:.48;
+      animation:molDrift 10s ease-in-out infinite alternate;
+    }
+    @keyframes molDrift{to{transform:translateY(30px) rotate(-2deg)}}
+    .atom{
+      position:absolute;
+      width:12px;height:12px;border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 16px rgba(255,255,255,.7);
+    }
+    .bond{
+      position:absolute;
+      height:1px;
+      background:rgba(255,255,255,.85);
+      transform-origin:left center;
+      box-shadow:0 0 9px rgba(255,255,255,.35);
+    }
+    .formula{
+      position:absolute;
+      color:#fff;
+      font-family:Orbitron,sans-serif;
+      font-size:18px;
+      opacity:.95;
+    }
+
+    .container{width:min(1180px,calc(100% - 34px));margin:0 auto}
+
+    header{
+      position:fixed;
+      top:14px;left:0;right:0;
+      z-index:50;
+    }
+    .nav{
+      width:min(1180px,calc(100% - 34px));
+      margin:0 auto;
+      padding:14px 18px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.78);
+      backdrop-filter:blur(18px);
+      box-shadow:var(--glow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:.15em}
+    .brand-icon{width:44px;height:44px;border:2px solid #fff;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);display:grid;place-items:center;box-shadow:0 0 18px rgba(255,255,255,.35)}
+    .nav-links{display:flex;gap:24px;color:#cfcfcf;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .nav-links a:hover{color:#fff;text-shadow:0 0 12px #fff}
+    .cart-btn{border:1px solid #fff;background:#fff;color:#000;padding:12px 16px;font-weight:900;cursor:pointer;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+
+    .hero{min-height:100vh;display:grid;align-items:center;padding:150px 0 80px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+    .kicker{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);padding:9px 14px;font-family:Orbitron,sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.045);margin-bottom:24px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+    h1{font-family:Orbitron,sans-serif;font-size:clamp(44px,7vw,88px);line-height:.96;letter-spacing:.02em;text-transform:uppercase;text-shadow:0 0 28px rgba(255,255,255,.28);margin-bottom:22px}
+    .hero p{max-width:630px;color:#bdbdbd;line-height:1.75;font-size:18px;margin-bottom:28px}
+    .buttons{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{border:1px solid #fff;background:#fff;color:#000;padding:15px 22px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.22s;clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(255,255,255,.45)}
+    .btn.dark{background:#000;color:#fff}
+
+    .hero-card{border:1px solid var(--line);background:rgba(255,255,255,.04);padding:22px;box-shadow:var(--glow);clip-path:polygon(28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px);position:relative;overflow:hidden}
+    .hero-card:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-100%);animation:sheen 4s infinite}
+    @keyframes sheen{55%,100%{transform:translateX(100%)}}
+
+    .vial-lab{height:560px;display:grid;place-items:center;position:relative;perspective:1000px}
+    .ring{position:absolute;width:420px;height:420px;border:1px solid rgba(255,255,255,.34);border-radius:50%;box-shadow:inset 0 0 35px rgba(255,255,255,.12),0 0 45px rgba(255,255,255,.12);animation:spin 18s linear infinite}
+    .ring.two{width:320px;height:320px;animation-duration:12s;animation-direction:reverse;border-style:dashed}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .vial{width:210px;height:425px;position:relative;animation:vialFloat 5s ease-in-out infinite alternate;filter:drop-shadow(0 35px 40px rgba(255,255,255,.11))}
+    @keyframes vialFloat{to{transform:translateY(-24px) rotateY(18deg)}}
+    .vial-cap{width:105px;height:58px;margin:0 auto;background:linear-gradient(90deg,#111,#fff,#111);border:1px solid #fff;border-radius:10px 10px 4px 4px}
+    .vial-neck{width:76px;height:34px;margin:0 auto;border-left:1px solid #fff;border-right:1px solid #fff;background:rgba(255,255,255,.15)}
+    .vial-body{height:318px;border:1px solid #fff;border-radius:42px 42px 30px 30px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.38),rgba(255,255,255,.04));position:relative;overflow:hidden}
+    .vial-body:before{content:"";position:absolute;left:28px;top:18px;width:34px;height:260px;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent);border-radius:999px;opacity:.48}
+    .vial-label{position:absolute;left:16px;right:16px;top:96px;border:2px solid #fff;background:#000;padding:22px 8px;text-align:center;clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);box-shadow:0 0 22px rgba(255,255,255,.28)}
+    .vial-label small{font-family:Orbitron,sans-serif;letter-spacing:.22em;font-size:10px;color:#cfcfcf}
+    .vial-label h3{font-family:Orbitron,sans-serif;font-size:34px;margin:8px 0 2px}
+    .vial-label p{font-family:Orbitron,sans-serif;font-size:15px;letter-spacing:.12em;color:#fff}
+
+    .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+    .trust div{border:1px solid var(--softline);background:rgba(255,255,255,.045);padding:14px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);font-size:13px;color:#bbb}
+    .trust strong{display:block;color:#fff;font-family:Orbitron,sans-serif;font-size:12px;letter-spacing:.1em;margin-bottom:5px}
+
+    section{padding:100px 0;position:relative}
+    .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:34px}
+    .title{font-family:Orbitron,sans-serif;text-transform:uppercase;font-size:clamp(32px,5vw,58px);letter-spacing:.04em;text-shadow:0 0 24px rgba(255,255,255,.22)}
+    .copy{color:#b8b8b8;line-height:1.7;max-width:550px}
+
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .product{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));padding:18px;min-height:520px;position:relative;overflow:hidden;transition:.25s;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px)}
+    .product:hover{transform:translateY(-10px);box-shadow:var(--glow)}
+    .tag{position:absolute;top:16px;left:16px;border:1px solid #fff;background:#000;padding:7px 10px;font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.12em;z-index:3}
+    .p-stage{height:285px;display:grid;place-items:center;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 52%);border:1px solid var(--softline);clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);position:relative}
+    .p-vial{width:110px;height:230px;animation:smallFloat 4s ease-in-out infinite alternate}
+    @keyframes smallFloat{to{transform:translateY(-12px) rotateY(18deg)}}
+    .p-cap{width:58px;height:32px;margin:0 auto;background:linear-gradient(90deg,#111,#fff,#111);border:1px solid #fff;border-radius:9px 9px 3px 3px}
+    .p-neck{width:42px;height:18px;margin:0 auto;background:rgba(255,255,255,.15);border-left:1px solid #fff;border-right:1px solid #fff}
+    .p-body{height:178px;border:1px solid #fff;border-radius:22px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.36),rgba(255,255,255,.04));position:relative;overflow:hidden}
+    .p-label{position:absolute;left:8px;right:8px;top:62px;border:1px solid #fff;background:#000;padding:11px 4px;text-align:center;clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+    .p-label strong{display:block;font-family:Orbitron,sans-serif;font-size:13px}.p-label span{font-family:Orbitron,sans-serif;font-size:10px;color:#ccc}
+    .product h3{font-family:Orbitron,sans-serif;margin:20px 0 8px;font-size:22px;text-transform:uppercase}
+    .product p{color:#aaa;line-height:1.6;font-size:14px;margin-bottom:18px}
+    .price-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.price{font-size:24px;font-weight:900}.add{border:1px solid #fff;background:#fff;color:#000;padding:12px 14px;font-weight:900;cursor:pointer;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+    .details-btn{width:100%;margin-top:14px;border:1px solid var(--softline);background:#000;color:#fff;padding:12px;font-weight:900;cursor:pointer;text-transform:uppercase;letter-spacing:.08em}
+    .details-modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.78)}
+    .details-modal.open{display:flex}.details-box{width:min(850px,100%);max-height:86vh;overflow:auto;border:1px solid #fff;background:#050505;padding:26px;box-shadow:var(--glow);clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px)}.details-box h2,.details-box h3{font-family:Orbitron,sans-serif;text-transform:uppercase;margin:16px 0 10px}.details-box p,.details-box li{color:#bbb;line-height:1.7}.details-box ul{padding-left:22px}.details-close{float:right;background:#fff;color:#000;border:0;padding:10px 14px;font-weight:900;cursor:pointer}
+
+    .lab-panel{border:1px solid var(--line);background:rgba(255,255,255,.045);padding:30px;clip-path:polygon(30px 0,100% 0,100% calc(100% - 30px),calc(100% - 30px) 100%,0 100%,0 30px);box-shadow:var(--glow)}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.feature{border:1px solid var(--softline);padding:22px;background:rgba(0,0,0,.45);min-height:185px;clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px)}.feature h3{font-family:Orbitron,sans-serif;font-size:16px;margin:12px 0}.feature p{color:#aaa;line-height:1.6;font-size:14px}.ico{font-size:26px}
+
+    .checkout{display:grid;grid-template-columns:1fr .75fr;gap:22px}.card{border:1px solid var(--line);background:rgba(255,255,255,.05);padding:24px;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);box-shadow:var(--glow)}.card h3{font-family:Orbitron,sans-serif;text-transform:uppercase;margin-bottom:16px}.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field.full{grid-column:1/-1}label{display:block;color:#bbb;font-weight:800;font-size:12px;margin-bottom:7px;text-transform:uppercase;letter-spacing:.09em}input,select,textarea{width:100%;border:1px solid var(--softline);background:#000;color:#fff;padding:14px;outline:0}input:focus,select:focus,textarea:focus{border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.08)}.paybox{border:1px solid var(--softline);background:#000;padding:16px;margin-top:12px;display:flex;justify-content:space-between;gap:10px}.paybox strong{font-family:Orbitron,sans-serif}.summary-line{display:flex;justify-content:space-between;border-bottom:1px solid var(--softline);padding:13px 0;color:#bbb}.summary-line.total{font-size:24px;color:#fff;font-weight:900;border-bottom:0}.notice{border:1px solid #fff;background:rgba(255,255,255,.055);padding:18px;color:#bbb;line-height:1.65;margin-top:18px}
+
+    footer{border-top:1px solid var(--line);padding:46px 0;color:#aaa}.footer-grid{display:grid;grid-template-columns:1fr repeat(3,.5fr);gap:26px}.footer-grid h4{font-family:Orbitron,sans-serif;color:#fff;margin-bottom:12px}.footer-grid a,.footer-grid p{display:block;color:#aaa;line-height:1.8;font-size:14px}
+
+    .drawer{position:fixed;top:0;right:-430px;width:min(420px,100%);height:100vh;background:rgba(0,0,0,.96);border-left:1px solid var(--line);z-index:100;padding:24px;transition:.3s;box-shadow:-20px 0 60px rgba(255,255,255,.08);display:flex;flex-direction:column}.drawer.open{right:0}.overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);z-index:90;display:none}.overlay.open{display:block}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{width:42px;height:42px;background:#fff;color:#000;border:0;font-size:24px;cursor:pointer}.cart-items{flex:1;overflow:auto;display:grid;gap:12px}.cart-item{border:1px solid var(--softline);padding:14px;background:rgba(255,255,255,.04);display:grid;grid-template-columns:1fr auto;gap:10px}.remove{background:transparent;border:0;color:#fff;text-decoration:underline;cursor:pointer}.drawer-bottom{border-top:1px solid var(--softline);padding-top:16px}
+
+    @media(max-width:960px){.nav-links{display:none}.hero-grid,.checkout,.footer-grid{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:repeat(2,1fr)}.dna-right,.molecule-left{opacity:.18}}
+    @media(max-width:640px){.products,.features,.trust,.form{grid-template-columns:1fr}.section-head{display:block}.copy{margin-top:12px}.hero{padding-top:125px}.vial-lab{height:460px}.ring{width:320px;height:320px}.ring.two{width:240px;height:240px}.brand span{font-size:12px}h1{font-size:42px}}
+  </style>
 </head>
 <body>
-<div class="bg"></div><div class="molecules"></div>
-<header class="top"><div class="nav"><div class="brand"><div class="brandmark"></div>MARPE<b>TIDES</b></div><nav class="navlinks"><a href="#products">PRODUCTS</a><a href="#quality">QUALITY</a><a href="#reviews">REVIEWS</a><a href="#contact">CONTACT</a></nav><div class="navcta"><span class="pill"><i class="fa-solid fa-flask"></i> Lab Tested</span><button class="btn" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-cart-shopping"></i> SHOP NOW</button></div></div></header>
-<section class="hero"><div><div class="badge">PREMIUM RESEARCH PEPTIDES</div><h1>PURE. POTENT.<span>RESULTS.</span></h1><p class="lead">High-purity research peptides with a premium 3D vial presentation, clean labels, fast checkout, PayPal/Bitcoin options, and a modern funnel layout.</p><div class="heroicons"><div class="item"><i class="fa-solid fa-shield-check"></i><div><b>99%+ PURITY</b><br><small>Lab tested</small></div></div><div class="item"><i class="fa-solid fa-bullseye"></i><div><b>HIGH POTENCY</b><br><small>Max results</small></div></div><div class="item"><i class="fa-solid fa-chart-line"></i><div><b>RESEARCH</b><br><small>Grade quality</small></div></div></div><div class="actions"><button class="btn" onclick="document.querySelector('#products').scrollIntoView({behavior:'smooth'})">SHOP PEPTIDES <i class="fa-solid fa-arrow-right"></i></button><button class="btn outline" onclick="document.querySelector('#quality').scrollIntoView({behavior:'smooth'})">LEARN MORE</button></div><div class="rating"><span class="stars">★★★★★</span> 4.9/5 &nbsp; | &nbsp; 2,500+ Happy Researchers</div></div><div class="stage"><div class="halo"></div><div class="pedestal"></div><div class="vial3d" style="--accent:#8cff00"><div class="cap"></div><div class="neck"></div><div class="bottle"><div class="label"><div class="m-logo"><span class="m">MARPE</span><span class="p">TIDES</span></div><div class="product-title">GLP<span class="num">3</span></div><div class="research">RESEARCH USE ONLY</div><div class="iconsrow"><div><i class="fa-solid fa-flask"></i>PURE</div><div><i class="fa-solid fa-bullseye"></i>POTENT</div><div><i class="fa-solid fa-chart-line"></i>PERFORMANCE</div></div><div class="bottom-band">NOT FOR HUMAN CONSUMPTION <span class="mg">10MG</span></div></div></div></div></div></section>
-<div class="gridwrap"><div class="stats"><div class="stat"><i class="fa-solid fa-users"></i><div><b>2,500+</b>Researchers</div></div><div class="stat"><i class="fa-solid fa-box"></i><div><b>10,000+</b>Orders shipped</div></div><div class="stat"><i class="fa-solid fa-shield"></i><div><b>99%+</b>Purity</div></div><div class="stat"><i class="fa-solid fa-headset"></i><div><b>24/7</b>Support</div></div></div>
-<section class="products" id="products"><h2 class="section-title">BEST SELLERS</h2><p class="subtitle">Realistic 3D vial style with custom labels for every product</p><div class="productgrid" id="productgrid"></div></section>
-<section class="quality" id="quality"><div class="q"><i class="fa-solid fa-vial"></i><div><b>LAB TESTED</b><br>Every batch tested for quality.</div></div><div class="q"><i class="fa-solid fa-shield-halved"></i><div><b>RESEARCH ONLY</b><br>For laboratory research purposes only.</div></div><div class="q"><i class="fa-solid fa-cube"></i><div><b>DISCREET SHIPPING</b><br>Secure worldwide shipping.</div></div><div class="q"><i class="fa-solid fa-award"></i><div><b>QUALITY GUARANTEE</b><br>Premium quality presentation.</div></div></section>
-
-<section class="reviews" id="reviews">
-  <h2 class="section-title">TRUSTED BY RESEARCHERS</h2>
-  <p class="subtitle">More real-looking review cards to build trust and improve conversion</p>
-  <div class="reviewgrid">
-    <div class="review"><b>Michael R. · Columbus, OH</b><p class="stars">★★★★★</p><p>Clean checkout, fast order confirmation, and the product presentation looks premium.</p></div>
-    <div class="review"><b>Sarah J. · Tampa, FL</b><p class="stars">★★★★★</p><p>The 3D vial product cards make the site look professional and easy to trust.</p></div>
-    <div class="review"><b>David L. · Austin, TX</b><p class="stars">★★★★★</p><p>Simple shopping cart and clear payment options. Very smooth buying experience.</p></div>
-    <div class="review"><b>Anthony P. · Miami, FL</b><p class="stars">★★★★★</p><p>Labels are clean, modern, and the checkout fields are easy to complete.</p></div>
-    <div class="review"><b>Jessica M. · Phoenix, AZ</b><p class="stars">★★★★★</p><p>I like that the shipping address is requested before payment. It feels more secure.</p></div>
-    <div class="review"><b>Robert K. · Dallas, TX</b><p class="stars">★★★★★</p><p>The Bitcoin wallet and PayPal option are clearly displayed. Very convenient.</p></div>
-    <div class="review"><b>Daniel S. · Orlando, FL</b><p class="stars">★★★★★</p><p>The product cards look high-end and the cart works well on mobile.</p></div>
-    <div class="review"><b>Emily C. · Denver, CO</b><p class="stars">★★★★★</p><p>Professional layout, strong colors, and very clear research-use messaging.</p></div>
-    <div class="review"><b>Kevin T. · Houston, TX</b><p class="stars">★★★★★</p><p>Easy to add multiple products and review the full order before payment.</p></div>
-    <div class="review"><b>Brian A. · Las Vegas, NV</b><p class="stars">★★★★★</p><p>The PayPal checkout button and fallback payment link give customers confidence.</p></div>
-    <div class="review"><b>Olivia G. · San Diego, CA</b><p class="stars">★★★★★</p><p>Beautiful 3D style. The vials moving slightly makes the page feel alive.</p></div>
-    <div class="review"><b>Matthew B. · Atlanta, GA</b><p class="stars">★★★★★</p><p>Great funnel structure: hero, products, trust section, reviews, and checkout.</p></div>
+  <div class="lab-bg">
+    <div class="grid-lines"></div>
+    <div class="molecule-left" id="moleculeLeft"></div>
+    <div class="dna-right" id="dnaRight"></div>
   </div>
-</section></div>
-<button class="cart" onclick="openCart()"><i class="fa-solid fa-cart-shopping"></i><span class="cart-count" id="cartCount">0</span></button>
-<div class="cart-panel" id="cartPanel"><div style="display:flex;justify-content:space-between;align-items:center"><h2>Shopping Cart</h2><span class="checkout-close" onclick="closeCart()">&times;</span></div><div id="cartItems"></div><div style="margin-top:18px;font-size:24px;font-weight:900">Total: <span id="cartTotal">$0.00</span></div><button class="btn" style="width:100%;margin-top:16px" onclick="openCheckoutFromCart()"><i class="fa-solid fa-lock"></i> CHECKOUT</button></div>
+  <div class="scanline"></div>
 
-<div class="checkout-modal" id="checkoutModal">
-  <div class="checkout-box">
-    <span class="checkout-close" onclick="closeCheckout()">&times;</span>
-    <h2><i class="fa-solid fa-lock"></i> Secure Checkout</h2>
-    <p class="mini-note">
-      Payment options: PayPal to <b>info.arlomi@gmail.com</b> or Bitcoin direct transfer.
-      Complete shipping information before payment.
-    </p>
-
-    <div class="checkout-summary" id="checkoutSummary"></div>
-
-    <h3 style="margin:14px 0 8px">Shipping Address</h3>
-    <div class="formgrid">
-      <input class="field" id="customerName" placeholder="Full name *">
-      <input class="field" id="customerEmail" placeholder="Email *">
-      <input class="field" id="customerPhone" placeholder="Phone">
-      <input class="field" id="shippingCountry" placeholder="Country *" value="United States">
-      <input class="field full" id="shippingAddress" placeholder="Street address *">
-      <input class="field" id="shippingCity" placeholder="City *">
-      <input class="field" id="shippingState" placeholder="State *">
-      <input class="field" id="shippingZip" placeholder="ZIP / Postal Code *">
-      <textarea class="field full" id="orderNotes" placeholder="Order notes / shipping instructions" rows="3"></textarea>
-    </div>
-
-    <div class="error" id="checkoutError"></div>
-    <div class="success" id="checkoutSuccess"></div>
-
-    <div class="pay-choice">
-      <div class="pay-card" onclick="selectPayment('paypal')">
-        <i class="fa-brands fa-paypal" style="color:#46a6ff"></i>
-        <h3>PayPal</h3>
-        <p class="mini-note">Smart button + fallback link to info.arlomi@gmail.com</p>
+  <header>
+    <nav class="nav">
+      <a href="#home" class="brand"><div class="brand-icon">⌬</div><span>MARPEPTIDES</span></a>
+      <div class="nav-links">
+        <a href="#products">Products</a><a href="#quality">Quality</a><a href="#checkout">Checkout</a><a href="#legal">Legal</a>
       </div>
-      <div class="pay-card" onclick="selectPayment('bitcoin')">
-        <i class="fa-brands fa-bitcoin" style="color:#f7931a"></i>
-        <h3>Bitcoin</h3>
-        <p class="mini-note">BTC wallet payment</p>
+      <button class="cart-btn" onclick="toggleCart(true)">Cart <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="kicker">DNA LABORATORY INTERFACE</div>
+          <h1>MARPEPTIDES<br>Research Lab</h1>
+          <p>Black and white 3D laboratory style website inspired by your MARPEPTIDES label: molecular background, DNA motion, futuristic panels, product vials, cart, shipping form, PayPal and Bitcoin payment sections.</p>
+          <div class="buttons"><a class="btn" href="#products">View Products</a><a class="btn dark" href="#checkout">Checkout</a></div>
+          <div class="trust"><div><strong>LAB STYLE</strong>Animated background</div><div><strong>PAYPAL</strong>Payment section</div><div><strong>BITCOIN</strong>BTC instructions</div><div><strong>RUO</strong>Research use only</div></div>
+        </div>
+        <div class="hero-card">
+          <div class="vial-lab">
+            <div class="ring"></div><div class="ring two"></div>
+            <div class="vial"><div class="vial-cap"></div><div class="vial-neck"></div><div class="vial-body"><div class="vial-label"><small>MARPEPTIDES</small><h3>BAC WATER</h3><p>10ML</p></div></div></div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="payment-panel" id="paypalPanel">
-      <h3>PayPal Payment</h3>
-      <p class="mini-note">
-        Current SDK uses <b>client-id=sb</b> for testing. For real payments, replace it with your LIVE PayPal Business Client ID.
-        Merchant email set in order: <b>info.arlomi@gmail.com</b>.
-      </p>
-      <div id="paypal-button-container"></div>
-      <button class="btn outline" style="width:100%;margin-top:12px" onclick="openPayPal()">
-        <i class="fa-brands fa-paypal"></i> PAYPAL FALLBACK LINK
-      </button>
-    </div>
+    <section id="products">
+      <div class="container">
+        <div class="section-head"><div><div class="kicker">PRODUCT CATALOG</div><h2 class="title">Research Products</h2></div><p class="copy">Cards in the same black and white laboratory style, with vial labels matching your brand.</p></div>
+        <div class="products" id="productGrid"></div>
+      </div>
+    </section>
 
-    <div class="payment-panel" id="bitcoinPanel">
-      <h3>Bitcoin Payment</h3>
-      <p class="mini-note">Send exact BTC equivalent for the total order amount to this wallet:</p>
-      <div class="btc-address" id="btcAddress">32y6gQdQGBUSMSznyJbppMm22iQZsV1Q86</div>
-      <button class="btn outline" style="width:100%" onclick="copyBTC()">
-        <i class="fa-solid fa-copy"></i> COPY BITCOIN ADDRESS
-      </button>
-      <button class="btn" style="width:100%;margin-top:10px" onclick="confirmBTC()">CONFIRM BITCOIN ORDER</button>
+    <section id="quality">
+      <div class="container lab-panel">
+        <div class="section-head"><div><div class="kicker">QUALITY SYSTEM</div><h2 class="title">Lab Confidence</h2></div><p class="copy">Use this area for COA, batch number, tracking, customer support, and research disclaimers.</p></div>
+        <div class="features">
+          <div class="feature"><div class="ico">🧬</div><h3>COA Files</h3><p>Add PDF links for each product batch and purity document.</p></div>
+          <div class="feature"><div class="ico">📦</div><h3>Tracking</h3><p>Order status and tracking updates can be connected with a backend.</p></div>
+          <div class="feature"><div class="ico">🔐</div><h3>Secure Pay</h3><p>PayPal Business and Bitcoin checkout areas are included.</p></div>
+          <div class="feature"><div class="ico">⚗️</div><h3>RUO Only</h3><p>Research use only and not for human consumption disclaimer.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checkout">
+      <div class="container">
+        <div class="section-head"><div><div class="kicker">PAYMENT + SHIPPING</div><h2 class="title">Checkout Form</h2></div><p class="copy">Front-end demo. For real money collection, connect PayPal Business API and a Bitcoin payment processor or wallet verification system.</p></div>
+        <div class="checkout">
+          <div class="card">
+            <h3>Shipping Address</h3>
+            <div class="form">
+              <div class="field"><label>First Name</label><input placeholder="First name"></div>
+              <div class="field"><label>Last Name</label><input placeholder="Last name"></div>
+              <div class="field full"><label>Email</label><input type="email" placeholder="customer@email.com"></div>
+              <div class="field full"><label>Phone</label><input placeholder="Phone number"></div>
+              <div class="field full"><label>Street Address</label><input placeholder="Shipping address"></div>
+              <div class="field"><label>City</label><input placeholder="City"></div>
+              <div class="field"><label>State</label><input placeholder="State"></div>
+              <div class="field"><label>ZIP Code</label><input placeholder="ZIP"></div>
+              <div class="field"><label>Country</label><select><option>United States</option><option>Canada</option><option>Other</option></select></div>
+            </div>
+
+            <h3 style="margin-top:28px">Payment Method</h3>
+            <div class="paybox" style="display:block"><span>PayPal Hosted Button</span><strong style="float:right">PAY NOW</strong><div id="paypal-container-HR4M3KAUUV59J" style="margin-top:14px"></div></div>
+            <div class="paybox"><span>Bitcoin Wallet Payment</span><strong>BTC READY</strong></div>
+            <div class="paybox"><span>Coupon Code</span><strong>APPLY</strong></div>
+            <div class="notice"><strong>PayPal:</strong> Replace demo button with your PayPal Business Client ID.<br><strong>Bitcoin:</strong> Replace placeholder with your BTC wallet or payment processor checkout link.</div>
+          </div>
+
+          <aside class="card">
+            <h3>Order Summary</h3>
+            <div class="summary-line"><span>Subtotal</span><strong id="summarySubtotal">$0.00</strong></div>
+            <div class="summary-line"><span>Shipping</span><strong>$12.99</strong></div>
+            <div class="summary-line"><span>Tax</span><strong>Calculated later</strong></div>
+            <div class="summary-line total"><span>Total</span><strong id="summaryTotal">$0.00</strong></div>
+            <a class="btn" href="#paypal-container-HR4M3KAUUV59J" style="width:100%;margin-top:18px">Pay With PayPal</a>
+            <button class="btn dark" style="width:100%;margin-top:12px" onclick="demoCheckout()">Bitcoin / Manual Checkout</button>
+            <div class="notice">This HTML does not process real payments by itself. It is the front-end design ready for payment integration.</div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="legal">
+      <div class="container">
+        <div class="lab-panel">
+          <div class="kicker">LEGAL DISCLAIMER</div>
+          <h2 class="title" style="margin-bottom:18px">Research Use Only</h2>
+          <p class="copy" style="max-width:900px">All products displayed are for laboratory research use only. Not for human consumption. Not intended to diagnose, treat, cure, or prevent any disease. Add your Terms, Privacy Policy, Refund Policy, Shipping Policy, and COA verification page before launch.</p>
+        </div>
+      </div>
+    </section>
+      <section id="reviews">
+      <div class="container">
+        <div class="section-head"><div><div class="kicker">USA REVIEWS</div><h2 class="title">Customer Feedback</h2></div><p class="copy">Sample review section for the store design. Replace with verified reviews before launch.</p></div>
+        <div class="features">
+          <div class="feature"><div class="ico">★★★★★</div><h3>Michael R. — Florida</h3><p>Clean packaging, fast updates, and the COA page made the order feel professional.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Jason T. — Texas</h3><p>The black and white branding looks premium. Checkout was simple and easy to follow.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Brandon K. — Ohio</h3><p>Great presentation and quick response from support. The product labels look very sharp.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Andrew S. — California</h3><p>The lab-style website gives a clean, serious, research-focused feel.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Chris M. — New York</h3><p>Easy to navigate from product page to order summary. Very modern design.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Daniel P. — Arizona</h3><p>The vial graphics and COA section make the brand look more trustworthy.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Robert L. — Georgia</h3><p>Professional store layout, clear shipping form, and simple payment options.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Kevin H. — Nevada</h3><p>The DNA background and 3D movement make the page stand out immediately.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Steven W. — Illinois</h3><p>Product descriptions are detailed and the research disclaimer is clear.</p></div>
+          <div class="feature"><div class="ico">★★★★★</div><h3>Anthony B. — North Carolina</h3><p>Premium look, clean product cards, and very smooth mobile experience.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="details-modal" id="detailsModal" onclick="closeDetails(event)">
+    <div class="details-box" id="detailsBox">
+      <button class="details-close" onclick="hideDetails()">Close</button>
+      <div id="detailsContent"></div>
     </div>
   </div>
-</div>
-<footer id="contact">MARPEPTIDES · Research Use Only · Not For Human Consumption · PayPal: info.arlomi@gmail.com · Bitcoin: 32y6gQdQGBUSMSznyJbppMm22iQZsV1Q86</footer>
-<script>
-const PAYPAL_EMAIL='info.arlomi@gmail.com';
-const BITCOIN_ADDRESS='32y6gQdQGBUSMSznyJbppMm22iQZsV1Q86';
-const products=[
-  ['GLP3','10MG',99,'#8cff00'],
-  ['SEMAX','10MG',84,'#00c2ff'],
-  ['EPITALON','10MG',72,'#9a7cff'],
-  ['TB-500','10MG',79,'#39d353'],
-  ['BPC-157','10MG',79,'#00aaff'],
-  ['BAC WATER','10ML',26,'#a7b7c9']
-];
 
-let cart=JSON.parse(localStorage.getItem('marpeptides_cart')||'[]');
-let checkoutItems=[];
-let paypalRendered=false;
+  <footer>
+    <div class="container footer-grid">
+      <div><div class="brand" style="margin-bottom:14px"><div class="brand-icon">⌬</div><span>MARPEPTIDES</span></div><p>www.marpeptides.com<br>marpeptides@gmail.com<br>Premium MARPEPTIDES research laboratory store.</p></div>
+      <div><h4>Store</h4><a href="#products">Products</a><a href="#checkout">Checkout</a></div>
+      <div><h4>Support</h4><a href="#">Tracking</a><a href="#">COA</a><a href="#">Contact</a></div>
+      <div><h4>Legal</h4><a href="#legal">RUO Disclaimer</a><a href="#">Terms</a><a href="#">Privacy</a></div>
+    </div>
+  </footer>
 
-function vialHTML(name,dose,accent){
-  let main=name.replace(/(\d)$/,'<span class="num">$1</span>');
-  if(name==='BPC-157') main='BPC<span class="num">157</span>';
-  if(name==='TB-500') main='TB<span class="num">500</span>';
-  if(name==='BAC WATER') main='BAC<br><span class="num" style="font-size:34px">WATER</span>';
-  return `<div class="vial3d" style="--accent:${accent}"><div class="cap"></div><div class="neck"></div><div class="bottle"><div class="label"><div class="m-logo"><span class="m">MARPE</span><span class="p">TIDES</span></div><div class="product-title">${main}</div><div class="research">RESEARCH USE ONLY</div><div class="iconsrow"><div><i class="fa-solid fa-flask"></i>PURE</div><div><i class="fa-solid fa-bullseye"></i>POTENT</div><div><i class="fa-solid fa-chart-line"></i>PERFORMANCE</div></div><div class="bottom-band">NOT FOR HUMAN CONSUMPTION <span class="mg">${dose}</span></div></div></div></div>`;
-}
+  <div class="overlay" id="overlay" onclick="toggleCart(false)"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-head"><h2 style="font-family:Orbitron,sans-serif">Cart</h2><button class="close" onclick="toggleCart(false)">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="drawer-bottom"><div class="summary-line total"><span>Total</span><strong id="cartTotal">$0.00</strong></div><a class="btn" style="width:100%;margin-top:14px" href="#checkout" onclick="toggleCart(false)">Go Checkout</a></div>
+  </aside>
 
-function saveCart(){localStorage.setItem('marpeptides_cart',JSON.stringify(cart));updateCart();}
-function addToCart(name,dose,price,accent){let item=cart.find(x=>x.name===name);if(item)item.qty++;else cart.push({name,dose,price,accent,qty:1});saveCart();openCart();}
-function buyNow(name,dose,price,accent){checkoutItems=[{name,dose,price,accent,qty:1}];openCheckout();}
-function changeQty(name,delta){let item=cart.find(x=>x.name===name);if(!item)return;item.qty+=delta;if(item.qty<=0)cart=cart.filter(x=>x.name!==name);saveCart();}
-function cartTotal(items=cart){return items.reduce((sum,x)=>sum+x.price*x.qty,0)}
-function updateCart(){
-  document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);
-  document.getElementById('cartTotal').textContent='$'+cartTotal().toFixed(2);
-  document.getElementById('cartItems').innerHTML=cart.length?cart.map(x=>`<div class="cart-row"><div><b>${x.name}</b><br><small>${x.dose} · $${x.price}.00</small></div><div><button class="qty-btn" onclick="changeQty('${x.name}',-1)">-</button> <b>${x.qty}</b> <button class="qty-btn" onclick="changeQty('${x.name}',1)">+</button></div></div>`).join(''):'<p class="mini-note" style="margin-top:18px">Your cart is empty.</p>';
-}
-function openCart(){document.getElementById('cartPanel').classList.add('open')}
-function closeCart(){document.getElementById('cartPanel').classList.remove('open')}
-function openCheckoutFromCart(){if(!cart.length){alert('Your cart is empty.');return}checkoutItems=[...cart];openCheckout();}
-function openCheckout(){
-  let total=cartTotal(checkoutItems);
-  document.getElementById('checkoutSummary').innerHTML=checkoutItems.map(x=>`<div style="display:flex;justify-content:space-between;margin:6px 0"><span>${x.name} x${x.qty}</span><b>$${(x.price*x.qty).toFixed(2)}</b></div>`).join('')+`<hr style="border-color:rgba(255,255,255,.15);margin:12px 0"><div style="display:flex;justify-content:space-between;font-size:22px"><b>Total</b><b>$${total.toFixed(2)}</b></div>`;
-  document.getElementById('checkoutModal').style.display='flex';
-  clearMessages();
-  selectPayment('paypal');
-}
-function closeCheckout(){document.getElementById('checkoutModal').style.display='none'}
-function selectPayment(method){
-  document.querySelectorAll('.pay-card').forEach(x=>x.classList.remove('active'));
-  document.querySelectorAll('.payment-panel').forEach(x=>x.classList.remove('active'));
-  if(method==='paypal'){
-    document.querySelectorAll('.pay-card')[0].classList.add('active');
-    document.getElementById('paypalPanel').classList.add('active');
-    renderPayPalButtons();
-  }else{
-    document.querySelectorAll('.pay-card')[1].classList.add('active');
-    document.getElementById('bitcoinPanel').classList.add('active');
-  }
-}
-function clearMessages(){
-  const err=document.getElementById('checkoutError');
-  const ok=document.getElementById('checkoutSuccess');
-  if(err){err.style.display='none';err.innerHTML=''}
-  if(ok){ok.style.display='none';ok.innerHTML=''}
-  document.querySelectorAll('.field').forEach(f=>f.classList.remove('required'));
-}
-function getShippingData(){
-  return {
-    name:document.getElementById('customerName').value.trim(),
-    email:document.getElementById('customerEmail').value.trim(),
-    phone:document.getElementById('customerPhone').value.trim(),
-    country:document.getElementById('shippingCountry').value.trim(),
-    address:document.getElementById('shippingAddress').value.trim(),
-    city:document.getElementById('shippingCity').value.trim(),
-    state:document.getElementById('shippingState').value.trim(),
-    zip:document.getElementById('shippingZip').value.trim(),
-    notes:document.getElementById('orderNotes').value.trim()
-  };
-}
-function validateShipping(){
-  clearMessages();
-  const required=['customerName','customerEmail','shippingCountry','shippingAddress','shippingCity','shippingState','shippingZip'];
-  let missing=[];
-  required.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el.value.trim()){el.classList.add('required');missing.push(el.placeholder.replace('*','').trim());}
-  });
-  const email=document.getElementById('customerEmail').value.trim();
-  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    document.getElementById('customerEmail').classList.add('required');
-    missing.push('valid email');
-  }
-  if(missing.length){
-    const box=document.getElementById('checkoutError');
-    box.innerHTML='<b>Please complete:</b> '+missing.join(', ');
-    box.style.display='block';
-    return false;
-  }
-  return true;
-}
-function orderDescription(){
-  const ship=getShippingData();
-  return 'MARPEPTIDES order: '+checkoutItems.map(x=>`${x.name} ${x.dose} x${x.qty}`).join(', ')+' | Ship to: '+ship.name+', '+ship.address+', '+ship.city+', '+ship.state+' '+ship.zip+', '+ship.country+' | Email: '+ship.email+' | Phone: '+ship.phone+' | Notes: '+ship.notes;
-}
-function renderPayPalButtons(){
-  if(paypalRendered || !window.paypal) return;
-  paypalRendered=true;
-  paypal.Buttons({
-    style:{layout:'vertical',color:'blue',shape:'pill',label:'paypal'},
-    onClick:function(){return validateShipping();},
-    createOrder:function(data,actions){
-      const ship=getShippingData();
-      const total=cartTotal(checkoutItems).toFixed(2);
-      return actions.order.create({
-        intent:'CAPTURE',
-        purchase_units:[{
-          description:orderDescription().substring(0,127),
-          invoice_id:'MP-'+Date.now(),
-          amount:{currency_code:'USD',value:total},
-          payee:{email_address:PAYPAL_EMAIL},
-          shipping:{
-            name:{full_name:ship.name},
-            address:{
-              address_line_1:ship.address,
-              admin_area_2:ship.city,
-              admin_area_1:ship.state,
-              postal_code:ship.zip,
-              country_code:'US'
-            }
-          }
-        }]
-      });
-    },
-    onApprove:function(data,actions){
-      return actions.order.capture().then(function(details){
-        const box=document.getElementById('checkoutSuccess');
-        box.innerHTML='✅ PayPal payment completed. Order ID: <b>'+details.id+'</b>. Shipping address was attached to the PayPal order.';
-        box.style.display='block';
-        cart=[];
-        saveCart();
-      });
-    },
-    onError:function(err){
-      const box=document.getElementById('checkoutError');
-      box.innerHTML='PayPal error. Verify your LIVE PayPal Business Client ID before publishing. The current client-id=sb is only for testing.';
-      box.style.display='block';
-      console.error(err);
+  <script src="https://www.paypal.com/sdk/js?client-id=BAA_REPLACE_WITH_YOUR_PAYPAL_CLIENT_ID&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+
+  <script>
+    const PAYPAL_PAYMENT_LINK = 'https://www.paypal.com/paypalme/MARPEPTIDES'; // Cambia este link por tu link real de PayPal.Me o PayPal Checkout
+
+    const products=[
+      {
+        name:'GLP3',mg:'10MG',price:89,
+        desc:'RT3 triple receptor agonist research peptide for GLP-1, GIP, and glucagon receptor pathway studies.',
+        details:`<h3>Description</h3><p><strong>RT3 — Triple Receptor Agonist Research Peptide</strong></p><p>RT3 is a next-generation research peptide engineered to simultaneously engage three metabolic receptor targets: GLP-1, GIP, and glucagon receptors. This triple agonist mechanism represents a significant advancement over single- and dual-receptor compounds in preclinical metabolic research.</p><h3>Mechanism of Action</h3><p>RT3 activates glucagon-like peptide-1 (GLP-1) receptors to potentiate glucose-dependent insulin secretion, glucose-dependent insulinotropic polypeptide (GIP) receptors to enhance incretin signaling, and glucagon receptors to promote energy expenditure and lipid oxidation.</p><h3>Research Applications</h3><ul><li>Metabolic pathway modulation and energy homeostasis</li><li>Insulin sensitivity and glucose regulation studies</li><li>Appetite signaling and food intake research</li><li>Body composition and lipid metabolism investigations</li><li>Comparative studies with single- and dual-receptor agonists</li></ul><h3>Product Specifications</h3><ul><li>Quantity: 10mg per vial</li><li>Purity: ≥99% HPLC verified</li><li>Form: Lyophilized powder</li><li>Storage: Refrigerate after reconstitution</li><li>Testing: USA lab tested, COA available</li></ul><p><strong>For research purposes only. Not for human use or consumption.</strong></p>`
+      },
+      {
+        name:'WOLVERINE',mg:'BPC/TB-500 BLEND',price:90,
+        desc:'Dual peptide tissue repair research stack combining BPC-157 and TB-500 in one formulation.',
+        details:`<h3>Description</h3><p><strong>BPC/TB-500 Blend — Dual Peptide Tissue Repair Stack</strong></p><p>The BPC-157 and TB-500 blend combines two of the most extensively studied regenerative peptides into a single research-ready formulation. By pairing a gastric pentadecapeptide (BPC-157) with a thymosin beta-4 fragment (TB-500), this blend targets complementary tissue repair pathways.</p><h3>Dual Mechanism of Action</h3><p>BPC-157 modulates nitric oxide pathways, upregulates growth factor receptors including VEGF, FGF, and EGF, and activates the FAK-paxillin pathway. TB-500 regulates actin polymerization while reducing pro-inflammatory cytokines and promoting angiogenesis.</p><h3>Research Applications</h3><ul><li>Synergistic tissue repair and regeneration studies</li><li>Wound healing cascade investigations</li><li>Angiogenesis and vascularization research</li><li>Anti-inflammatory pathway modulation</li><li>Peptide combination efficacy vs monotherapy comparison</li><li>Musculoskeletal and connective tissue biology</li></ul><h3>Product Specifications</h3><ul><li>Quantity: Blend per vial BPC-157 + TB-500</li><li>Purity: ≥99% HPLC verified</li><li>Form: Lyophilized powder</li><li>Storage: Refrigerate after reconstitution</li><li>Testing: USA lab tested, COA available</li></ul><p><strong>For research use only. Not for human consumption.</strong></p>`
+      },
+      {
+        name:'SEMAX',mg:'10MG',price:79,
+        desc:'Nootropic neuropeptide ACTH 4-10 analog for neuroscience research applications.',
+        details:`<h3>Description</h3><p><strong>Semax — Nootropic Neuropeptide ACTH 4-10 Analog</strong></p><p>Semax is a synthetic heptapeptide derived from the ACTH fragment 4-10, with the addition of a Pro-Gly-Pro C-terminal tripeptide sequence that enhances metabolic stability and CNS penetration.</p><h3>Mechanism of Action</h3><p>Semax increases brain-derived neurotrophic factor BDNF and nerve growth factor NGF expression in the hippocampus and cortex. It modulates serotonergic and dopaminergic neurotransmission, enhances acetylcholine release, and activates MAPK/ERK signaling cascades involved in synaptic plasticity.</p><h3>Research Applications</h3><ul><li>BDNF and NGF expression modulation studies</li><li>Cognitive function and memory formation research</li><li>Neuroplasticity and synaptic remodeling</li><li>Neuroprotection in ischemic injury models</li><li>Neurotransmitter system modulation</li></ul><h3>Product Specifications</h3><ul><li>Quantity: 10mg per vial</li><li>Purity: ≥99% HPLC verified</li><li>Form: Lyophilized powder</li><li>Storage: Refrigerate after reconstitution</li><li>Testing: USA lab tested, COA available</li></ul><p><strong>For research purposes only. Not for human use or consumption.</strong></p>`
+      },
+      {
+        name:'BAC WATER',mg:'10ML',price:29,
+        desc:'Sterile research grade bacteriostatic water containing 0.9% benzyl alcohol preservative.',
+        details:`<h3>Bacteriostatic Water 10mL — Sterile Research Grade</h3><p>Bacteriostatic water is sterile water containing 0.9% benzyl alcohol as a bacteriostatic preservative. This preservative inhibits bacterial growth, allowing the same vial to be used for multiple withdrawals over a 28-day period.</p><h3>Why Bacteriostatic Water</h3><p>Lyophilized peptides require reconstitution with an appropriate solvent before use in research applications. Bacteriostatic water is a standard research solvent because benzyl alcohol helps maintain sterility across multiple needle punctures.</p><h3>Usage Guidelines</h3><ul><li>Swab vial septum with alcohol before each withdrawal</li><li>Use within 28 days of first puncture</li><li>Store at room temperature before opening; refrigerate after first use</li><li>Compatible with lyophilized peptide research compounds</li></ul><h3>Product Specifications</h3><ul><li>Volume: 10mL per vial</li><li>Preservative: 0.9% benzyl alcohol</li><li>Sterility: Lab tested and verified</li><li>Packaging: Sealed glass vial</li></ul><p><strong>For research use only. Not for human or animal use. Only includes 10mL bottle — no other supplies.</strong></p>`
+      },
+      {
+        name:'EPITHALON',mg:'10MG',price:85,
+        desc:'High purity research peptide for cellular process, peptide signaling, and molecular biology studies.',
+        details:`<h3>Description</h3><p><strong>Epithalon 10mg – High Purity Research Peptide</strong></p><p>Epithalon 10mg is a premium-grade research peptide widely utilized in scientific studies focused on cellular processes, peptide signaling, and molecular biology.</p><p>Manufactured under strict quality control standards, this peptide supports consistency, purity, and stability for reliable experimental use. Each vial contains 10mg of lyophilized Epithalon.</p><h3>Key Features</h3><ul><li>Compound: Epithalon</li><li>Quantity: 10mg per vial</li><li>Form: Lyophilized powder</li><li>Purity: High-quality research-grade material</li><li>Application: Laboratory research and analytical use only</li></ul><h3>Research Applications</h3><ul><li>Cellular and molecular biology studies</li><li>Gene expression and peptide signaling research</li><li>Biochemical pathway analysis</li><li>Peptide interaction and structural studies</li></ul><p><strong>This product is intended for research use only and is not approved for human or veterinary use.</strong></p>`
+      },
+      {name:'TB500',mg:'10MG',price:95,desc:'Research product card with 3D glass vial presentation.',details:`<h3>TB500 10MG</h3><p>Premium research product display with COA-ready batch documentation area.</p><p><strong>For research use only. Not for human consumption.</strong></p>`}
+    ];
+    let cart=[];
+    const productGrid=document.getElementById('productGrid'),cartCount=document.getElementById('cartCount'),cartItems=document.getElementById('cartItems'),cartTotal=document.getElementById('cartTotal'),summarySubtotal=document.getElementById('summarySubtotal'),summaryTotal=document.getElementById('summaryTotal');
+    const money=v=>'$'+v.toFixed(2);
+
+    function renderProducts(){
+      productGrid.innerHTML=products.map((p,i)=>`<article class="product"><div class="tag">RUO ONLY</div><div class="p-stage"><div class="p-vial"><div class="p-cap"></div><div class="p-neck"></div><div class="p-body"><div class="p-label"><strong>${p.name}</strong><span>${p.mg}</span></div></div></div></div><h3>${p.name} ${p.mg}</h3><p>${p.desc}</p><div class="price-row"><div class="price">${money(p.price)}</div><button class="add" onclick="addToCart(${i})">Add</button></div><button class="details-btn" onclick="showDetails(${i})">Description / Reviews</button></article>`).join('');
     }
-  }).render('#paypal-button-container');
-}
-function openPayPal(){
-  if(!validateShipping()) return;
-  let amount=cartTotal(checkoutItems).toFixed(2);
-  let note=encodeURIComponent(orderDescription());
-  window.open(`https://www.paypal.com/paypalme/${PAYPAL_EMAIL}?amount=${amount}&currency=USD&note=${note}`,'_blank');
-}
-function copyBTC(){navigator.clipboard.writeText(BITCOIN_ADDRESS);alert('Bitcoin address copied: '+BITCOIN_ADDRESS)}
-function confirmBTC(){
-  if(!validateShipping()) return;
-  const total=cartTotal(checkoutItems).toFixed(2);
-  const ship=getShippingData();
-  const box=document.getElementById('checkoutSuccess');
-  box.innerHTML=`✅ Bitcoin order created.<br><br><b>Total:</b> $${total} USD equivalent in BTC<br><b>Wallet:</b> ${BITCOIN_ADDRESS}<br><b>Ship to:</b> ${ship.name}, ${ship.address}, ${ship.city}, ${ship.state} ${ship.zip}, ${ship.country}<br><br>After sending BTC, email payment proof to <b>${PAYPAL_EMAIL}</b>.`;
-  box.style.display='block';
-}
-document.getElementById('productgrid').innerHTML=products.map(p=>`<div class="card">${vialHTML(p[0],p[1],p[3])}<h3>${p[0]}</h3><div class="dose">${p[1]}</div><div class="price">$${p[2]}.00</div><button class="btn" onclick="addToCart('${p[0]}','${p[1]}',${p[2]},'${p[3]}')"><i class="fa-solid fa-cart-plus"></i> ADD TO CART</button><button class="btn outline" style="width:100%;margin-top:10px" onclick="buyNow('${p[0]}','${p[1]}',${p[2]},'${p[3]}')"><i class="fa-solid fa-bolt"></i> BUY NOW</button></div>`).join('');
-updateCart();
-</script>
+    function addToCart(i){const p=products[i],e=cart.find(x=>x.name===p.name);e?e.qty++:cart.push({...p,qty:1});renderCart();toggleCart(true)}
+    function removeFromCart(i){cart.splice(i,1);renderCart()}
+    function renderCart(){const subtotal=cart.reduce((s,x)=>s+x.price*x.qty,0),total=subtotal?subtotal+12.99:0;cartCount.textContent=cart.reduce((s,x)=>s+x.qty,0);cartTotal.textContent=money(total);summarySubtotal.textContent=money(subtotal);summaryTotal.textContent=money(total);cartItems.innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><strong>${x.name} ${x.mg}</strong><br><small>Qty ${x.qty} × ${money(x.price)}</small></div><button class="remove" onclick="removeFromCart(${i})">Remove</button></div>`).join(''):'<p style="color:#aaa;line-height:1.7">Your cart is empty.</p>'}
+    function toggleCart(open){document.getElementById('drawer').classList.toggle('open',open);document.getElementById('overlay').classList.toggle('open',open)}
+    function demoCheckout(){alert('Bitcoin demo: replace this alert with your BTC wallet address, payment processor link, backend database, and order email system.')}
+    function showDetails(i){const p=products[i];document.getElementById('detailsContent').innerHTML=`<h2>${p.name} ${p.mg}</h2>${p.details}<h3>Additional information</h3><p>COA available. USA lab tested. Store according to product requirements.</p><h3>Reviews</h3><p>Customer review system can be connected with Shopify, WooCommerce, or a backend database.</p>`;document.getElementById('detailsModal').classList.add('open')}
+    function hideDetails(){document.getElementById('detailsModal').classList.remove('open')}
+    function closeDetails(e){if(e.target.id==='detailsModal')hideDetails()}
+
+    function buildDNA(){
+      const dna=document.getElementById('dnaRight');
+      let html='<div class="dna-strand">';
+      for(let i=0;i<34;i++){
+        const y=i*26;
+        const angle=Math.sin(i*.65)*34;
+        html+=`<span style="top:${y}px;transform:rotate(${angle}deg)"></span><i style="top:${y-3}px;left:${72+Math.sin(i*.65)*54}px"></i><i style="top:${y-3}px;left:${168-Math.sin(i*.65)*54}px"></i>`;
+      }
+      dna.innerHTML=html+'</div>';
+    }
+    function buildMolecule(){
+      const mol=document.getElementById('moleculeLeft');
+      const atoms=[[65,45],[120,95],[80,155],[145,210],[70,270],[135,335],[85,415],[150,500],[90,600]];
+      const labels=[['NH₂',120,25],['O',178,82],['OH',188,260],['H₂N',20,350],['N',160,455]];
+      let html='';
+      atoms.forEach(([x,y])=>html+=`<div class="atom" style="left:${x}px;top:${y}px"></div>`);
+      for(let i=0;i<atoms.length-1;i++){
+        const [x1,y1]=atoms[i], [x2,y2]=atoms[i+1];
+        const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy),ang=Math.atan2(dy,dx)*180/Math.PI;
+        html+=`<div class="bond" style="left:${x1+6}px;top:${y1+6}px;width:${len}px;transform:rotate(${ang}deg)"></div>`;
+      }
+      labels.forEach(([t,x,y])=>html+=`<div class="formula" style="left:${x}px;top:${y}px">${t}</div>`);
+      mol.innerHTML=html;
+    }
+    buildDNA();buildMolecule();renderProducts();renderCart();
+
+    if (window.paypal && paypal.HostedButtons) {
+      paypal.HostedButtons({
+        hostedButtonId: "HR4M3KAUUV59J",
+      }).render("#paypal-container-HR4M3KAUUV59J");
+    }
+  </script>
 </body>
 </html>
+
