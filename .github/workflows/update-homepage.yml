@@ -1,0 +1,37 @@
+name: Actualizar portada
+on:
+  push:
+    paths:
+      - '.github/workflows/update-homepage.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actualizar portada
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''<section class="hero"><div class="wrap heroGrid"><div><span class="eyebrow">Compuestos de investigación</span><h1>MARPEPTIDES</h1><p>Catálogo especializado de compuestos para investigación de laboratorio. Cada producto incluye su ficha informativa.</p><p><strong>Solo para investigación.</strong></p></div><div class="vials"><img class="hero-vial-img" src="images/semax.svg?v=4"><img class="hero-vial-img" src="images/retatrutide.svg?v=4"><img class="hero-vial-img" src="images/cerebrolysin.svg?v=1"></div></div></section>'''
+          new = '''<section class="hero"><div class="wrap heroGrid"><div><span class="eyebrow">Información científica</span><h1>¿QUÉ SON LOS PÉPTIDOS?</h1><p>Los <strong>péptidos</strong> son pequeñas cadenas de aminoácidos, los mismos componentes que forman las proteínas. Actúan como moléculas de señalización y participan en numerosos procesos biológicos del organismo.</p><p>En investigación, los péptidos se estudian por su posible papel en áreas como la <strong>regeneración celular, metabolismo, recuperación de tejidos, función cognitiva, producción de colágeno, señalización hormonal y envejecimiento celular</strong>.</p><p>Cada péptido posee una estructura y función diferente, por lo que sus propiedades, mecanismos y aplicaciones de investigación pueden variar considerablemente.</p><p>En <strong>Mar Peptides</strong> ofrecemos productos seleccionados para fines de investigación, con énfasis en <strong>calidad, consistencia y transparencia</strong>.</p><p><strong>Productos destinados exclusivamente para investigación. No destinados al diagnóstico, tratamiento o prevención de enfermedades.</strong></p></div><div class="vials"><img class="hero-vial-img" src="images/semax.svg?v=4"><img class="hero-vial-img" src="images/retatrutide.svg?v=4"><img class="hero-vial-img" src="images/cerebrolysin.svg?v=1"></div></div></section>'''
+          if old not in s:
+              raise SystemExit('No se encontró la portada esperada')
+          s = s.replace(old, new, 1)
+          s = s.replace('2026-09-16-graphite-cyan-14','2026-09-16-portada-peptidos-15',1)
+          p.write_text(s, encoding='utf-8')
+          for f in ['tmp.ignore','index-portada-temp.txt','portada-note.txt','index-portada-ready.txt','.github/workflows/update-homepage.yml']:
+              q = Path(f)
+              if q.exists(): q.unlink()
+          PY
+      - name: Publicar cambios
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A
+          git commit -m "Actualizar portada: qué son los péptidos"
+          git push
